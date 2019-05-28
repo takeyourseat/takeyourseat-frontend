@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AllplacesComponent } from './components/allplaces/allplaces.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path:'all-places', component:AllplacesComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
