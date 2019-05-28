@@ -6,18 +6,20 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http'
 import { AlertsComponent } from './components/includes/alerts/alerts.component';
+import { AllplacesComponent } from './components/allplaces/allplaces.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AlertsComponent,
-  ],
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-  ],
+    AllplacesComponent,
+   ],
   providers: [],
   bootstrap: [AppComponent]
 })
