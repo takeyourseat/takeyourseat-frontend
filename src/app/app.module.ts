@@ -12,13 +12,13 @@ import { AllplacesComponent } from './components/allplaces/allplaces.component';
     AppComponent,
     LoginComponent,
     AlertsComponent,
+    AllplacesComponent,
  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AllplacesComponent,
    ],
   providers: [],
   bootstrap: [AppComponent]
