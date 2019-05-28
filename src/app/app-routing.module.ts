@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AllplacesComponent } from './components/allplaces/allplaces.component';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-
-
   { path:'login', component:LoginComponent},
+  { path:'all-places', component:AllplacesComponent},
   { path:'**', component:LoginComponent},
-
 ];
 
 @NgModule({
