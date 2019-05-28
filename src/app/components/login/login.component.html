@@ -1,0 +1,11 @@
+<div class="card my-5"  style="width: 20rem;  margin: 0 auto;" >
+    <div class="card-body">
+        <div class="card-title">Login</div>
+        <form>
+            <input type="text" name="username" [(ngModel)]="loginUsername" class="form-control" />
+            <input type="password" name="password" [(ngModel)]="loginPassword" class="form-control my-3" />
+            <button (click)="login()" class="form-control btn btn-primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
