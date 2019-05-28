@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AlertsComponent } from '../includes/alerts/alerts.component';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   ifFail(error){
-    alert("error");
+    AlertsComponent.displayDanger("Unable to Log in, please try again")
   }
 
 }
