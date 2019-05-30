@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { AlertsComponent } from '../includes/alerts/alerts.component';
+import { AlertsComponent } from '../utils/alerts/alerts.component';
 import { Router } from '@angular/router';
 
 @Component({
