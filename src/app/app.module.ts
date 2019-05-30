@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllplacesComponent } from './components/allplaces/allplaces.component';
+import { PlacetableComponent } from './components/utils/placetable/placetable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AllplacesComponent
+    AllplacesComponent,
+    PlacetableComponent
   ],
   imports: [
     BrowserModule,
