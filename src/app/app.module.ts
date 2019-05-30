@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllplacesComponent } from './components/allplaces/allplaces.component';
 import { PlacetableComponent } from './components/utils/placetable/placetable.component';
+import { PlacemarkerComponent } from './components/utils/placemarker/placemarker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AllplacesComponent,
-    PlacetableComponent
+    PlacetableComponent,
+    PlacemarkerComponent
   ],
   imports: [
     BrowserModule,
