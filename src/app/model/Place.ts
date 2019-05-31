@@ -1,26 +1,18 @@
+import { Office } from './Office';
+
 export class Place {
   id: number;
-  number: number;
   coordinateX: number;
   coordinateY: number;
   floor: number;
   description: string;
-  office: {
-    description: string,
-    floor: number,
-    id: number,
-    number: number,
-    sizeX: number,
-    sizeY: number
-  }
+  office: Office;
 
-  constructor(id: number, number: number, coordinateX: number, coordinateY: number, floor: number, description: string) {
+  constructor(id: number, coordinateX: number, coordinateY: number, office: Office) {
     this.id = id;
-    this.number = number;
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
-    this.floor = floor;
-    this.description = description;
+    this.office = office;
   }
 }
 
