@@ -1,0 +1,14 @@
+.container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  background: #53f442;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
