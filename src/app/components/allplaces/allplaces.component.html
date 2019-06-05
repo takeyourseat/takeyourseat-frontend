@@ -1,3 +1,7 @@
-<p>
-  View allplaces
-</p>
+<h2>Floors</h2>
+<button type="button" (click)="getOffices(floor)" class="btn btn-primary" *ngFor="let floor of floors">Floor
+  {{floor}}</button>
+<h2>Offices</h2>
+<button type="button" (click)="selectOffice(office)" class="btn btn-primary" *ngFor="let office of offices">Office
+  {{office.number}}</button>
+<app-placetable [(places)]="places"></app-placetable>
