@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { AllplacesComponent } from './components/allplaces/allplaces.component';
 import { PlacetableComponent } from './components/utils/placetable/placetable.component';
 import { PlacemarkerComponent } from './components/utils/placemarker/placemarker.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from './components/utils/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AllplacesComponent,
     PlacetableComponent,
-    PlacemarkerComponent
+    PlacemarkerComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
