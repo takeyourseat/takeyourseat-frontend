@@ -7,12 +7,14 @@ export class Place {
   floor: number;
   description: string;
   office: Office;
+  userId: number;
 
-  constructor(id: number, coordinateX: number, coordinateY: number, office: Office) {
+  constructor(id: number, coordinateX: number, coordinateY: number, office: Office, userId: number) {
     this.id = id;
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
     this.office = office;
+    this.userId = userId;
   }
 }
 
