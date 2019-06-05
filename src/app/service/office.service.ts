@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Office } from 'src/app/model/Office';
 import { HttpClient } from '@angular/common/http';
-
-const endpoint = 'http://localhost:8084/api/';
+import { apiURL } from 'src/app/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +13,14 @@ export class OfficeService {
   ) { }
 
   getFloors() {
-    return this.http.get<[]>(endpoint + 'floors');
+    return this.http.get<[]>(apiURL + 'floors');
   }
 
   getOffices() {
-    return this.http.get<Office[]>(endpoint + 'offices/');
+    return this.http.get<Office[]>(apiURL + 'offices/');
   }
 
   getOfficesByFloor(floor) {
-    return this.http.get<Office[]>(endpoint + `offices?floor=${floor}`);
+    return this.http.get<Office[]>(apiURL + `offices?floor=${floor}`);
   }
 }
