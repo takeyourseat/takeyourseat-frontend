@@ -3,7 +3,7 @@ import { OfficeService } from 'src/app/service/office.service';
 import { PlaceService } from 'src/app/service/place.service';
 import { Office } from 'src/app/model/Office';
 import { Place } from 'src/app/model/Place';
-import { PlacetableComponent } from '../utils/placetable/placetable.component';
+import { PlacetableComponent } from '../placetable/placetable.component';
 
 @Component({
   selector: 'app-allplaces',
