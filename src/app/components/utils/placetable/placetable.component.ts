@@ -17,6 +17,9 @@ export class PlacetableComponent implements OnInit {
 
   @Input()
   set places(places: Place[]) {
+    if (!places) {
+      return;
+    }
     this._places = places;
     this._selectedOffice = places[0].office;
     this.showPlaces();
@@ -30,14 +33,15 @@ export class PlacetableComponent implements OnInit {
 
   showPlaces() {
     this.schema = [[]];
-
+    if (!this._selectedOffice) {
+      return;
+    }
     for (let i = 0; i < this._selectedOffice.sizeX; i++) {
       this.schema[i] = [];
       for (let j = 0; j < this._selectedOffice.sizeY; j++) {
         this.schema[i][j] = {};
       }
     }
-
     this._places.forEach(place => {
       this.schema[place.coordinateX][place.coordinateY].isPlace = true;
       this.schema[place.coordinateX][place.coordinateY].isAvailable = !place.userId;
