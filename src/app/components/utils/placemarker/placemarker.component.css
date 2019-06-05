@@ -7,8 +7,12 @@
 }
 
 .item {
-  background: #53f442;
+  background: #f44242;
   width: 10px;
   height: 10px;
   border-radius: 5px;
+}
+
+.item.active {
+  background: #53f442;
 }
