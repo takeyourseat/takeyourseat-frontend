@@ -1,7 +1,8 @@
 <table border="1px solid black" style="border: none">
   <tr *ngFor="let row of schema">
     <td width=25 height=25 *ngFor="let place of row">
-      <app-placemarker [(place)]="place" *ngIf="place.isPlace"></app-placemarker>
+      <app-placemarker [(place)]="place" *ngIf="place.isPlace" (click)="selectPlace(place)"></app-placemarker>
     </td>
   </tr>
 </table>
+<app-modal [(selectedPlace)]="selectedPlace"></app-modal>
