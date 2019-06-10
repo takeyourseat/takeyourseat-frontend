@@ -17,6 +17,7 @@ export class AllplacesComponent implements OnInit {
   places: Place[];
   floors: [];
   selectedOffice: Office;
+  selectedPlace: Place;
 
   constructor(
     private officeService: OfficeService,
