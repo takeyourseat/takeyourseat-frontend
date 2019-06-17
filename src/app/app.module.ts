@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllplacesComponent } from './components/allplaces/allplaces.component';
 import { PlacetableComponent } from './components/placetable/placetable.component';
 import { PlacemarkerComponent } from './components/placemarker/placemarker.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 import { ModalComponent } from './components/modal/modal.component';
+import { PlaceformComponent } from './components/placeform/placeform.component';
+import { PlacerequestformComponent } from './components/placerequestform/placerequestform.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { ModalComponent } from './components/modal/modal.component';
     AllplacesComponent,
     PlacetableComponent,
     PlacemarkerComponent,
-    ModalComponent
+    ModalComponent,
+    PlaceformComponent,
+    PlacerequestformComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    HttpClientModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
