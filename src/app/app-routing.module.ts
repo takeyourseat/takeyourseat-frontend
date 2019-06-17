@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AllplacesComponent } from './components/allplaces/allplaces.component';
 
 const routes: Routes = [
-  { path:'all-places', component:AllplacesComponent},
+  { path: 'places', component: AllplacesComponent },
 ];
 
 @NgModule({
