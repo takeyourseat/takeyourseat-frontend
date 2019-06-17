@@ -22,7 +22,8 @@ export class AllplacesComponent implements OnInit {
   constructor(
     private officeService: OfficeService,
     private placeService: PlaceService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.getFloors();
@@ -33,23 +34,24 @@ export class AllplacesComponent implements OnInit {
       response => {
         this.floors = response;
       }
-    )
+    );
   }
 
-  getOffices(id) {
-    this.officeService.getOfficesByFloor(id).subscribe(
+  getOffices(event: any) {
+    this.selectedOffice = event.target.value;
+    this.officeService.getOfficesByFloor(this.selectedOffice).subscribe(
       response => {
         this.offices = response;
       }
-    )
+    );
   }
 
   selectOffice(office: Office) {
-    this.selectedOffice = office
+    this.selectedOffice = office;
     this.placeService.getPlacesByOfficeId(office.id).subscribe(
       response => {
         this.places = response;
       }
-    )
+    );
   }
 }
