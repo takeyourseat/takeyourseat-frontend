@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ModalComponent } from './components/modal/modal.component';
 import { PlaceformComponent } from './components/placeform/placeform.component';
 import { PlacerequestformComponent } from './components/placerequestform/placerequestform.component';
+import { HeaderComponent } from './components/header/header.component';
+import { RequestedplaceComponent } from './components/requestedplace/requestedplace.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PlacerequestformComponent } from './components/placerequestform/placere
     PlacemarkerComponent,
     ModalComponent,
     PlaceformComponent,
-    PlacerequestformComponent
+    PlacerequestformComponent,
+    HeaderComponent,
+    RequestedplaceComponent
   ],
   imports: [
     BrowserModule,
