@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {apiURL} from '../constants';
-import {User} from '../model/User';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { apiURL } from '../constants';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,15 @@ export class UserService {
   ) {
   }
 
-  getUser(id: number) {
+  getUserById(id: number) {
     return this.http.get<User>(apiURL + `users/${id}`);
+  }
+
+  getUsers() {
+    return this.http.get<User[]>(apiURL + `users`);
+  }
+
+  getUsersByManagerId(id: number) {
+    return this.http.get<User[]>(apiURL + `users/?managerId=${id}`);
   }
 }
