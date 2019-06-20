@@ -14,3 +14,16 @@ export class PlacerequestService {
   getPlaceRequestsByManager(id: number) {
     return this.http.get<PlaceRequests[]>(apiURL + `requests?manager=${id}`);
   }
+
+  declinePlaceRequest(id: number) {
+    return this.http.put<PlaceRequests>(apiURL + `requests/${id}`, {});
+  }
+
+  acceptPlaceRequest(id: number) {
+    return this.http.patch<PlaceRequests>(apiURL + `requests/${id}`, {});
+  }
+
+  createPlaceRequest(placeId: number) {
+    return this.http.post<PlaceRequests>(apiURL + `requests/${placeId}`, {});
+  }
+}
