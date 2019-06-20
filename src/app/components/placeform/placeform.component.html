@@ -1,23 +1,18 @@
 <form>
   <div>
-    <label for="placeId" class="col-sm-4 col-form-label">Place ID</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="placeId" value={{_selectedPlace.id}}>
-    </div>
-
     <label for="firstName" class="col-sm-4 col-form-label">First Name</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="firstName" value={{user.firstName}}>
+      <input type="text" readonly class="form-control" id="firstName" value={{user?.firstName}}>
     </div>
 
     <label for="lastname" class="col-sm-4 col-form-label">Last Name</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="lastname" value={{user.lastName}}>
+      <input type="text" readonly class="form-control" id="lastname" value={{user?.lastName}}>
     </div>
 
     <label for="jobtitle" class="col-sm-4 col-form-label">Job Title</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="jobtitle" value={{user.jobTitle}}>
+      <input type="text" readonly class="form-control" id="jobtitle" value={{user?.jobTitle}}>
     </div>
 
     <label for="coordinateX" class="col-sm-4 col-form-label">Coordinate X</label>
