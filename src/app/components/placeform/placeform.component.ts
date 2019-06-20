@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Place } from '../../model/Place';
 import { User } from '../../model/User';
 import { UserService } from 'src/app/service/user.service';
@@ -8,7 +8,7 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './placeform.component.html',
   styleUrls: ['./placeform.component.css']
 })
-export class PlaceformComponent implements OnInit {
+export class PlaceformComponent implements OnChanges {
   private _selectedPlace: Place;
   private user: User;
 
@@ -21,15 +21,15 @@ export class PlaceformComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit() {
-    this.getUserById(this._selectedPlace.userId);
+  ngOnChanges() {
+    this.loadUserById(this._selectedPlace.userId);
   }
 
-  getUserById(id: number) {
+  loadUserById(id: number) {
     this.userService.getUserById(id).subscribe(
       response => {
         this.user = response;
       }
-    )
+    );
   }
 }
