@@ -8,9 +8,9 @@ import { PlaceRequests } from '../model/PlaceRequests';
 })
 export class PlacerequestService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getPlaceRequestsByManager(id: Number) {
+  getPlaceRequestsByManager(id: number) {
     return this.http.get<PlaceRequests[]>(apiURL + `requests?manager=${id}`);
   }
-}
