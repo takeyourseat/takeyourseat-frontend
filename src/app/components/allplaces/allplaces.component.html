@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <h2>Floors</h2>
-    <select id="floor" [ngModel]="selectedPlace" (change)="getOffices($event)">
+    <select id="floor" [ngModel]="selectedPlace" (change)="loadOffices($event)">
       <option *ngFor="let floor of floors" [value]="floor">{{"Floor " + floor}}</option>
     </select>
   </div>

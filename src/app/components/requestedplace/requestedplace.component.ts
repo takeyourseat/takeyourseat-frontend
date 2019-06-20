@@ -20,49 +20,41 @@ export class RequestedplaceComponent implements OnInit {
   constructor(
     private userService: UserService,
     private placeRequestService: PlacerequestService
-  ) { }
-
-  ngOnInit() {
-    this.getPlaceRequestByManager(2);
+  ) {
   }
 
-  getUsers() {
+  ngOnInit() { }
+
+  loadUsers() {
     this.userService.getUsers().subscribe(
       response => {
         this.Users = response;
       }
-    )
+    );
   }
 
-  getUserById(id: number) {
+  loadUserById(id: number) {
     this.userService.getUserById(id).subscribe(
       response => {
         this.user = response;
-        console.log(this.user);
       }
-    )
+    );
   }
 
-  getUsersByManagerId(id: number) {
+  loadUsersByManagerId(id: number) {
     this.userService.getUsersByManagerId(id).subscribe(
       response => {
         this.usersByManager = response;
-        console.log(this.usersByManager);
       }
-    )
+    );
   }
 
-  getPlaceRequestByManager(id: number) {
+  loadPlaceRequestByManager(id: number) {
     this.placeRequestService.getPlaceRequestsByManager(id).subscribe(
       response => {
         this.placeRequests = response;
-        console.log(this.placeRequests);
       }
-    )
+    );
   }
-
-  // acceptPlaceRequest(id: number) {
-  //   this.http.patch(apiURL + `requests/${id}`, {})
-  // }
 
 }

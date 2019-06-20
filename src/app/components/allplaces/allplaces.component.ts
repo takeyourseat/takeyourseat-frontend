@@ -26,10 +26,10 @@ export class AllplacesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFloors();
+    this.loadFloors();
   }
 
-  getFloors() {
+  loadFloors() {
     this.officeService.getFloors().subscribe(
       response => {
         this.floors = response;
@@ -37,7 +37,7 @@ export class AllplacesComponent implements OnInit {
     );
   }
 
-  getOffices(event: any) {
+  loadOffices(event: any) {
     this.selectedOffice = event.target.value;
     this.officeService.getOfficesByFloor(this.selectedOffice).subscribe(
       response => {
