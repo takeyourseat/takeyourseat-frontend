@@ -69,4 +69,15 @@ export class RequestedplaceComponent implements OnInit {
     location.reload();
   }
 
+  declinePlaceRequest(id: number) {
+    this.placeRequestService.declinePlaceRequest(id).subscribe(
+      response => {
+        this.placeRequest = response;
+        console.log(this.placeRequests);
+      }
+    )
+    ;
+    alert('place request declined');
+    location.reload();
+  }
 }
