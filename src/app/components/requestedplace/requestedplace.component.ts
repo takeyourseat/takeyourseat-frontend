@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
-import { User } from 'src/app/model/User';
-import { PlacerequestService } from 'src/app/service/placerequest.service';
-import { PlaceRequests } from 'src/app/model/PlaceRequests';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from 'src/app/service/user.service';
+import {User} from 'src/app/model/User';
+import {PlacerequestService} from 'src/app/service/placerequest.service';
+import {PlaceRequests} from 'src/app/model/PlaceRequests';
 
 @Component({
   selector: 'app-requestedplace',
@@ -15,7 +15,7 @@ export class RequestedplaceComponent implements OnInit {
   private usersByManager: User[];
   private user: User;
   private placeRequests: PlaceRequests[];
-
+  private placeRequest: PlaceRequests;
 
   constructor(
     private userService: UserService,
@@ -23,7 +23,9 @@ export class RequestedplaceComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadPlaceRequestByManager(2);
+  }
 
   loadUsers() {
     this.userService.getUsers().subscribe(
@@ -55,6 +57,16 @@ export class RequestedplaceComponent implements OnInit {
         this.placeRequests = response;
       }
     );
+  }
+  acceptPlaceRequest(id: number) {
+    this.placeRequestService.acceptPlaceRequest(id).subscribe(
+      response => {
+        this.placeRequest = response;
+        console.log(this.placeRequests);
+      }
+    );
+    alert('place request accepted');
+    location.reload();
   }
 
 }
