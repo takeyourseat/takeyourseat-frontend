@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {UserService} from 'src/app/service/user.service';
-import {User} from 'src/app/model/User';
 import {PlacerequestService} from 'src/app/service/placerequest.service';
 import {PlaceRequests} from 'src/app/model/PlaceRequests';
+import {PlaceService} from '../../service/place.service';
 
 @Component({
   selector: 'app-requestedplace',
