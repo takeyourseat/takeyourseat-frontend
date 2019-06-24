@@ -8,7 +8,7 @@
   <div>
     <h2>Offices</h2>
     <button type="button" (click)="selectOffice(office)" class="btn btn-primary" *ngFor="let office of offices">
-      {{"Office " + office.number}}
+      {{office.number}}
     </button>
   </div>
   <app-placetable [(places)]="places" [(selectedOffice)]="selectedOffice"></app-placetable>
