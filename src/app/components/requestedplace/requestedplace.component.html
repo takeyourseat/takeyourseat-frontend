@@ -1,0 +1,33 @@
+<div class="container" *ngIf="placeRequests.length; else noPlacesRequest">
+  <table class="table table-bordered mx-auto my-5">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>User Id</th>
+      <th>Place Id</th>
+      <th>Date Of</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let placerequest of placeRequests">
+      <td>{{placerequest.id}}</td>
+      <td>{{placerequest.userId}}</td>
+      <td>{{placerequest.placeId}}</td>
+      <td>{{placerequest.dateOf | date}}</td>
+      <td>
+        <button type="button" class="btn btn-success" (click)="acceptPlaceRequest(placerequest.id)">Approve</button>
+        <button type="button" class="btn btn-danger m-2"
+                (click)="declinePlaceRequest(placerequest.id)">Reject
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noPlacesRequest>
+  <h2 style="text-align:center">
+    There are no place requests
+  </h2>
+</ng-template>

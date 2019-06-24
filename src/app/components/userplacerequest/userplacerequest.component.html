@@ -1,0 +1,31 @@
+<div class="container">
+  <table class="table table-bordered mx-auto my-5">
+    <thead>
+    <tr>
+      <th>Place Id</th>
+      <th>Date Of</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let placerequest of placeRequests">
+      <td>{{placerequest.placeId}}</td>
+      <td>{{placerequest.dateOf | date}}</td>
+      <td *ngIf="placerequest.approved; then approved; else declined"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #approved>
+  <td>Approved</td>
+</ng-template>
+
+<ng-template #declined>
+  <td>Declined</td>
+</ng-template>
+
+<ng-template #pending>
+  <td>Pending</td>
+</ng-template>
