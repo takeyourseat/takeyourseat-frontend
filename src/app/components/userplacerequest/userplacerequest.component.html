@@ -1,5 +1,5 @@
-<div class="container">
-  <table class="table table-bordered mx-auto my-5">
+<div class="container" *ngIf="placeRequests?.length; else noUserPlaceRequests">
+<table class="table table-bordered mx-auto my-5">
     <thead>
     <tr>
       <th>Floor</th>
@@ -31,4 +31,8 @@
   </table>
 </div>
 
-
+<ng-template #noUserPlaceRequests>
+  <h2 style="text-align:center">
+    This user has no place requests
+  </h2>
+</ng-template>
