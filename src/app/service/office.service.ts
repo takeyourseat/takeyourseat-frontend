@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Office } from 'src/app/model/Office';
 import { HttpClient } from '@angular/common/http';
 import { apiURL } from 'src/app/constants';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from "rxjs/operators"
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +14,25 @@ export class OfficeService {
     private http: HttpClient
   ) { }
 
-  getFloors() {
-    return this.http.get<[]>(apiURL + 'floors');
+  getFloors(): Observable<[]> {
+    return this.http.get<[]>(apiURL + 'floors').pipe(catchError(this.handleError));
   }
 
-  getOffices() {
-    return this.http.get<Office[]>(apiURL + 'offices/');
+  getOffices(): Observable<Office[]> {
+    return this.http.get<Office[]>(apiURL + 'offices').pipe(catchError(this.handleError));
   }
 
-  getOfficesByFloor(floor) {
+  getOfficesByFloor(floor): Observable<Office[]> {
     return this.http.get<Office[]>(apiURL + `offices?floor=${floor}`);
+  }
+
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.message}`;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
   }
 }
