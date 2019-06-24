@@ -1,3 +1,15 @@
-<p>
-  View allplaces
-</p>
+<div class="container">
+  <div>
+    <h2>Floors</h2>
+    <select id="floor" [ngModel]="selectedPlace" (change)="loadOffices($event)">
+      <option *ngFor="let floor of floors" [value]="floor">{{"Floor " + floor}}</option>
+    </select>
+  </div>
+  <div>
+    <h2>Offices</h2>
+    <button type="button" (click)="selectOffice(office)" class="btn btn-primary" *ngFor="let office of offices">
+      {{"Office " + office.number}}
+    </button>
+  </div>
+  <app-placetable [(places)]="places" [(selectedOffice)]="selectedOffice"></app-placetable>
+</div>
