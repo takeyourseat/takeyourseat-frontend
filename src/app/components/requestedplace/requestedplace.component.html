@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="placeRequests.length; else noPlacesRequest">
   <table class="table table-bordered mx-auto my-5">
     <thead>
     <tr>
@@ -17,9 +17,17 @@
       <td>{{placerequest.dateOf | date}}</td>
       <td>
         <button type="button" class="btn btn-success" (click)="acceptPlaceRequest(placerequest.id)">Approve</button>
-        <button type="button" class="btn btn-danger m-2" (click)="declinePlaceRequest(placerequest.id)">Reject</button>
+        <button type="button" class="btn btn-danger m-2"
+                (click)="declinePlaceRequest(placerequest.id)">Reject
+        </button>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #noPlacesRequest>
+  <h2 style="text-align:center">
+    There are no place requests
+  </h2>
+</ng-template>

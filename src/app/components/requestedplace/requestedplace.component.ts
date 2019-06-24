@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {UserService} from 'src/app/service/user.service';
 import {User} from 'src/app/model/User';
 import {PlacerequestService} from 'src/app/service/placerequest.service';
@@ -14,7 +14,7 @@ export class RequestedplaceComponent implements OnInit {
   private Users: User[];
   private usersByManager: User[];
   private user: User;
-  private placeRequests: PlaceRequests[];
+  private placeRequests: PlaceRequests[] = [];
   private placeRequest: PlaceRequests;
 
   constructor(
@@ -58,6 +58,7 @@ export class RequestedplaceComponent implements OnInit {
       }
     );
   }
+
   acceptPlaceRequest(id: number) {
     this.placeRequestService.acceptPlaceRequest(id).subscribe(
       response => {
@@ -75,8 +76,7 @@ export class RequestedplaceComponent implements OnInit {
         this.placeRequest = response;
         console.log(this.placeRequests);
       }
-    )
-    ;
+    );
     alert('place request declined');
     location.reload();
   }
