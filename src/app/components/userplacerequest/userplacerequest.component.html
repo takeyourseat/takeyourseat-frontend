@@ -11,7 +11,9 @@
     <tr *ngFor="let placerequest of placeRequests">
       <td>{{placerequest.placeId}}</td>
       <td>{{placerequest.dateOf | date}}</td>
-      <td *ngIf="placerequest.approved; then approved; else declined"></td>
+      <td *ngIf="placerequest.approved != null; else pending">
+        <span *ngIf="placerequest.approved; then approved; else declined">
+    </span>
     </tr>
     </tbody>
   </table>
@@ -19,11 +21,11 @@
 
 
 <ng-template #approved>
-  <td>Approved</td>
+  <span>Approved</span>
 </ng-template>
 
 <ng-template #declined>
-  <td>Declined</td>
+  <span>Declined</span>
 </ng-template>
 
 <ng-template #pending>
