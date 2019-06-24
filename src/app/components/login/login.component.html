@@ -1,9 +1,15 @@
-<div class="card my-5"  style="width: 20rem;  margin: 0 auto;" >
+
+<div class="card my-5"  style="width: 25rem;  margin: 0 auto;" >
+    <div class="text-center">
+        <img style="width: 20rem; margin:0 auto;" class="" src="/assets/images/stefanini_logo.png" alt="Stefanini logo">
+    </div>
     <div class="card-body">
-        <div class="card-title">Login</div>
+        <div class="card-title">
+            Log in
+        </div>
         <form>
-            <input type="text" name="username" [(ngModel)]="loginUsername" class="form-control" />
-            <input type="password" name="password" [(ngModel)]="loginPassword" class="form-control my-3" />
+            <input type="text" name="username" placeholder="Username" [(ngModel)]="loginUsername" class="form-control" />
+            <input type="password" name="password" placeholder="Password" [(ngModel)]="loginPassword" class="form-control my-3" />
             <button (click)="login()" class="form-control btn btn-primary" type="submit">Login</button>
         </form>
     </div>
