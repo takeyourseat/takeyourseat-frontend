@@ -14,7 +14,7 @@ export class RequestedplaceComponent implements OnInit {
   private Users: User[];
   private usersByManager: User[];
   private user: User;
-  private placeRequests: PlaceRequests[];
+  private placeRequests: PlaceRequests[] = [];
   private placeRequest: PlaceRequests;
 
   constructor(

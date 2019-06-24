@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { apiURL } from '../constants';
-import { PlaceRequests } from '../model/PlaceRequests';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {apiURL} from '../constants';
+import {PlaceRequests} from '../model/PlaceRequests';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,9 @@ export class PlacerequestService {
 
   createPlaceRequest(placeId: number) {
     return this.http.post<PlaceRequests>(apiURL + `requests/${placeId}`, {});
+  }
+
+  getPlaceRequestsByUserId(userId: number) {
+    return this.http.get <PlaceRequests[]>(apiURL + `requests?user=${userId}`);
   }
 }
