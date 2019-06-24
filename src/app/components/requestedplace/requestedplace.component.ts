@@ -29,6 +29,8 @@ export class RequestedplaceComponent implements OnInit {
     this.placeRequestService.getPlaceRequestsByManager(id).subscribe(
       response => {
         this.placeRequests = response;
+        this.readUsers(this.placeRequests);
+        this.readPlaces(this.placeRequests);
       }
     );
   }
@@ -53,5 +55,25 @@ export class RequestedplaceComponent implements OnInit {
     );
     alert('place request declined');
     location.reload();
+  }
+
+  readUsers(placeRequests: PlaceRequests[]) {
+    for (const placeRequest of placeRequests) {
+      this.userService.getUserById(placeRequest.userId).subscribe(
+        response => {
+          placeRequest.user = response;
+        }
+      );
+    }
+  }
+
+  readPlaces(placeRequests: PlaceRequests[]) {
+    for (const placeRequest of placeRequests) {
+      this.placeService.getPlaceById(placeRequest.placeId).subscribe(
+        response => {
+          placeRequest.place = response;
+        }
+      );
+    }
   }
 }
