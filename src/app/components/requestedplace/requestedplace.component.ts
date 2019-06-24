@@ -11,44 +11,18 @@ import {PlaceService} from '../../service/place.service';
 })
 export class RequestedplaceComponent implements OnInit {
 
-  private Users: User[];
-  private usersByManager: User[];
-  private user: User;
   private placeRequests: PlaceRequests[] = [];
   private placeRequest: PlaceRequests;
 
   constructor(
     private userService: UserService,
-    private placeRequestService: PlacerequestService
+    private placeRequestService: PlacerequestService,
+    private placeService: PlaceService
   ) {
   }
 
   ngOnInit() {
     this.loadPlaceRequestByManager(2);
-  }
-
-  loadUsers() {
-    this.userService.getUsers().subscribe(
-      response => {
-        this.Users = response;
-      }
-    );
-  }
-
-  loadUserById(id: number) {
-    this.userService.getUserById(id).subscribe(
-      response => {
-        this.user = response;
-      }
-    );
-  }
-
-  loadUsersByManagerId(id: number) {
-    this.userService.getUsersByManagerId(id).subscribe(
-      response => {
-        this.usersByManager = response;
-      }
-    );
   }
 
   loadPlaceRequestByManager(id: number) {
