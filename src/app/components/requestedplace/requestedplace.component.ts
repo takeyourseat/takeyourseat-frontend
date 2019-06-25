@@ -66,14 +66,4 @@ export class RequestedplaceComponent implements OnInit {
       );
     }
   }
-
-  readPlaces(placeRequests: PlaceRequests[]) {
-    for (const placeRequest of placeRequests) {
-      this.placeService.getPlaceById(placeRequest.placeId).subscribe(
-        response => {
-          placeRequest.place = response;
-        }
-      );
-    }
-  }
 }
