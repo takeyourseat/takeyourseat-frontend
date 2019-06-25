@@ -1,8 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {UserService} from 'src/app/service/user.service';
-import {PlacerequestService} from 'src/app/service/placerequest.service';
-import {PlaceRequests} from 'src/app/model/PlaceRequests';
-import {PlaceService} from '../../service/place.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from 'src/app/service/user.service';
+import { PlacerequestService } from 'src/app/service/placerequest.service';
+import { PlaceRequests } from 'src/app/model/PlaceRequests';
 
 @Component({
   selector: 'app-requestedplace',
@@ -11,13 +10,13 @@ import {PlaceService} from '../../service/place.service';
 })
 export class RequestedplaceComponent implements OnInit {
 
-  private placeRequests: PlaceRequests[] = [];
+  private placeRequests: PlaceRequests[];
   private placeRequest: PlaceRequests;
+  private isDataLoading: boolean = true;
 
   constructor(
     private userService: UserService,
     private placeRequestService: PlacerequestService,
-    private placeService: PlaceService
   ) {
   }
 
@@ -30,7 +29,12 @@ export class RequestedplaceComponent implements OnInit {
       response => {
         this.placeRequests = response;
         this.readUsers(this.placeRequests);
-        this.readPlaces(this.placeRequests);
+        if (this.placeRequests.length === 0) {
+          this.isDataLoading = false;
+        }
+      },
+      error => {
+        this.isDataLoading = false;
       }
     );
   }
