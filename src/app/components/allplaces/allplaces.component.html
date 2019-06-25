@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" *ngIf="floors">
   <div>
     <h2>Floors</h2>
-    <select id="floor" [ngModel]="selectedPlace" (change)="loadOffices($event)">
-      <option *ngFor="let floor of floors" [value]="floor">{{"Floor " + floor}}</option>
-    </select>
+    <button type="button" (click)="loadOffices(floor)" class="btn btn-primary" *ngFor="let floor of floors">
+      {{"Floor " + floor}}
+    </button>
   </div>
   <div>
     <h2>Offices</h2>
