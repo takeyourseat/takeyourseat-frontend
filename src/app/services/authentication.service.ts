@@ -34,16 +34,20 @@ export class AuthenticationService {
         });
   }
 
-  // getHeaders(): HttpHeaders {
-  //   var headers = new HttpHeaders({
-  //     'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-  //     'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')
-  //   });
-  //   return headers;
-  // }
-
-  /* Ask before Using!! */
+  /** Ask before Using!! */
   getToken(): string{
     return sessionStorage.getItem('access_token');
   }
+
+  isUserLoggedIn():boolean{
+    if(sessionStorage.getItem('access_token'))
+      return true
+    else 
+      return false
+  }
+
+  logOut() {
+    sessionStorage.removeItem('access_token')
+  }
+  
 }

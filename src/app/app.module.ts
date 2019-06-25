@@ -17,6 +17,7 @@ import { RequestedplaceComponent } from './components/requestedplace/requestedpl
 import { UserplacerequestComponent } from './components/userplacerequest/userplacerequest.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InterceptorService } from './services/http/HttpTokenInterceptor.service';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { InterceptorService } from './services/http/HttpTokenInterceptor.service
     HeaderComponent,
     RequestedplaceComponent,
     UserplacerequestComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
