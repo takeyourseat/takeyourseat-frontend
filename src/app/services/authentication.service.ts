@@ -34,11 +34,16 @@ export class AuthenticationService {
         });
   }
 
-  getHeaders(): HttpHeaders {
-    var headers = new HttpHeaders({
-      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')
-    });
-    return headers;
+  // getHeaders(): HttpHeaders {
+  //   var headers = new HttpHeaders({
+  //     'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+  //     'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')
+  //   });
+  //   return headers;
+  // }
+
+  /* Ask before Using!! */
+  getToken(): string{
+    return sessionStorage.getItem('access_token');
   }
 }
