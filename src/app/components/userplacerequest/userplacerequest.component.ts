@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PlaceRequests} from '../../model/PlaceRequests';
-import {UserService} from '../../service/user.service';
-import {PlacerequestService} from '../../service/placerequest.service';
-import {PlaceService} from '../../service/place.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { PlaceRequests } from '../../model/PlaceRequests';
+import { UserService } from '../../service/user.service';
+import { PlacerequestService } from '../../service/placerequest.service';
+import { PlaceService } from '../../service/place.service';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-userplacerequest',
@@ -12,11 +13,10 @@ import {PlaceService} from '../../service/place.service';
 export class UserplacerequestComponent implements OnInit {
 
   private placeRequests: PlaceRequests[];
+  private isDataLoading: boolean = true;
 
   constructor(
-    private userService: UserService,
     private placeRequestService: PlacerequestService,
-    private placeService: PlaceService
   ) {
   }
 
@@ -28,19 +28,13 @@ export class UserplacerequestComponent implements OnInit {
     this.placeRequestService.getPlaceRequestsByUserId(userId).subscribe(
       response => {
         this.placeRequests = response;
-        this.readPlaces(this.placeRequests);
+        if (this.placeRequests.length === 0) {
+          this.isDataLoading = false;
+        }
+      },
+      error => {
+        this.isDataLoading = false;
       }
     );
   }
-
-  readPlaces(placeRequests: PlaceRequests[]) {
-    for (const placeRequest of placeRequests) {
-      this.placeService.getPlaceById(placeRequest.placeId).subscribe(
-        response => {
-          placeRequest.place = response;
-        }
-      );
-    }
-  }
-
 }
