@@ -1,31 +1,38 @@
-<div class="container">
+<div class="container" *ngIf="isDataLoading; else noUserPlaceRequests">
   <table class="table table-bordered mx-auto my-5">
     <thead>
-    <tr>
-      <th>Place Id</th>
-      <th>Date Of</th>
-      <th>Status</th>
-    </tr>
+      <tr>
+        <th>Floor</th>
+        <th>Office Number</th>
+        <th>Coordinate X</th>
+        <th>Coordinate Y</th>
+        <th>Date Of</th>
+        <th>Status</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let placerequest of placeRequests">
-      <td>{{placerequest.placeId}}</td>
-      <td>{{placerequest.dateOf | date}}</td>
-      <td *ngIf="placerequest.approved; then approved; else declined"></td>
-    </tr>
+      <tr *ngFor="let placerequest of placeRequests">
+        <td>{{placerequest.place?.office.floor}}</td>
+        <td>{{placerequest.place?.office.number}}</td>
+        <td>{{placerequest.place?.coordinateX}}</td>
+        <td>{{placerequest.place?.coordinateY}}</td>
+        <td>{{placerequest.dateOf | date}}</td>
+        <ng-template [ngIf]="placerequest.approved == null">
+          <td style="background: orange">Pending</td>
+        </ng-template>
+        <ng-template [ngIf]="!placerequest.approved && placerequest.approved != null">
+          <td style="background: #f44242">Declined</td>
+        </ng-template>
+        <ng-template [ngIf]="placerequest.approved">
+          <td style="background: #00c891">Approved</td>
+        </ng-template>
+      </tr>
     </tbody>
   </table>
 </div>
 
-
-<ng-template #approved>
-  <td>Approved</td>
-</ng-template>
-
-<ng-template #declined>
-  <td>Declined</td>
-</ng-template>
-
-<ng-template #pending>
-  <td>Pending</td>
+<ng-template #noUserPlaceRequests>
+  <h2 style="text-align:center">
+    This user has no place requests
+  </h2>
 </ng-template>

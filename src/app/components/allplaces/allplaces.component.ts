@@ -37,9 +37,8 @@ export class AllplacesComponent implements OnInit {
     );
   }
 
-  loadOffices(event: any) {
-    this.selectedOffice = event.target.value;
-    this.officeService.getOfficesByFloor(this.selectedOffice).subscribe(
+  loadOffices(id) {
+    this.officeService.getOfficesByFloor(id).subscribe(
       response => {
         this.offices = response;
       }

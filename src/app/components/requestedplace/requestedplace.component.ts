@@ -1,8 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {UserService} from 'src/app/service/user.service';
-import {User} from 'src/app/model/User';
-import {PlacerequestService} from 'src/app/service/placerequest.service';
-import {PlaceRequests} from 'src/app/model/PlaceRequests';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from 'src/app/service/user.service';
+import { PlacerequestService } from 'src/app/service/placerequest.service';
+import { PlaceRequests } from 'src/app/model/PlaceRequests';
 
 @Component({
   selector: 'app-requestedplace',
@@ -11,15 +10,13 @@ import {PlaceRequests} from 'src/app/model/PlaceRequests';
 })
 export class RequestedplaceComponent implements OnInit {
 
-  private Users: User[];
-  private usersByManager: User[];
-  private user: User;
-  private placeRequests: PlaceRequests[] = [];
+  private placeRequests: PlaceRequests[];
   private placeRequest: PlaceRequests;
+  private isDataLoading: boolean = true;
 
   constructor(
     private userService: UserService,
-    private placeRequestService: PlacerequestService
+    private placeRequestService: PlacerequestService,
   ) {
   }
 
@@ -27,34 +24,17 @@ export class RequestedplaceComponent implements OnInit {
     this.loadPlaceRequestByManager(2);
   }
 
-  loadUsers() {
-    this.userService.getUsers().subscribe(
-      response => {
-        this.Users = response;
-      }
-    );
-  }
-
-  loadUserById(id: number) {
-    this.userService.getUserById(id).subscribe(
-      response => {
-        this.user = response;
-      }
-    );
-  }
-
-  loadUsersByManagerId(id: number) {
-    this.userService.getUsersByManagerId(id).subscribe(
-      response => {
-        this.usersByManager = response;
-      }
-    );
-  }
-
   loadPlaceRequestByManager(id: number) {
     this.placeRequestService.getPlaceRequestsByManager(id).subscribe(
       response => {
         this.placeRequests = response;
+        this.readUsers(this.placeRequests);
+        if (this.placeRequests.length === 0) {
+          this.isDataLoading = false;
+        }
+      },
+      error => {
+        this.isDataLoading = false;
       }
     );
   }
@@ -79,5 +59,15 @@ export class RequestedplaceComponent implements OnInit {
     );
     alert('place request declined');
     location.reload();
+  }
+
+  readUsers(placeRequests: PlaceRequests[]) {
+    for (const placeRequest of placeRequests) {
+      this.userService.getUserById(placeRequest.userId).subscribe(
+        response => {
+          placeRequest.user = response;
+        }
+      );
+    }
   }
 }

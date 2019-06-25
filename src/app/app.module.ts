@@ -15,6 +15,8 @@ import { PlacerequestformComponent } from './components/placerequestform/placere
 import { HeaderComponent } from './components/header/header.component';
 import { RequestedplaceComponent } from './components/requestedplace/requestedplace.component';
 import { UserplacerequestComponent } from './components/userplacerequest/userplacerequest.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { UserplacerequestComponent } from './components/userplacerequest/userpla
     PlacerequestformComponent,
     HeaderComponent,
     RequestedplaceComponent,
-    UserplacerequestComponent
+    UserplacerequestComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
