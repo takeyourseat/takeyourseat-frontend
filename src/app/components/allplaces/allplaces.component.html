@@ -5,7 +5,7 @@
       {{"Floor " + floor}}
     </button>
   </div>
-  <div>
+  <div *ngIf="offices">
     <h2>Offices</h2>
     <button type="button" (click)="selectOffice(office)" class="btn btn-primary" *ngFor="let office of offices">
       {{office.number}}
