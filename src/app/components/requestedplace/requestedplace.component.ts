@@ -21,11 +21,11 @@ export class RequestedplaceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadPlaceRequestByManager(2);
+    this.loadPlaceRequestByManager();
   }
 
-  loadPlaceRequestByManager(id: number) {
-    this.placeRequestService.getPlaceRequestsByManager(id).subscribe(
+  loadPlaceRequestByManager() {
+    this.placeRequestService.getPlaceRequestsByManager().subscribe(
       response => {
         this.placeRequests = response;
         this.readUsers(this.placeRequests);
