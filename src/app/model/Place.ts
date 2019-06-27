@@ -4,17 +4,15 @@ export class Place {
   id: number;
   coordinateX: number;
   coordinateY: number;
-  floor: number;
-  description: string;
   office: Office;
   username: string;
 
-  constructor(id: number, coordinateX: number, coordinateY: number, office: Office, userId: number) {
+  constructor(id: number, coordinateX: number, coordinateY: number, office: Office, username: string) {
     this.id = id;
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
     this.office = office;
-    this.userId = userId;
+    this.username = username;
   }
 }
 
