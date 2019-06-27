@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
-import { PlacerequestService } from 'src/app/service/placerequest.service';
-import { PlaceRequests } from 'src/app/model/PlaceRequests';
+import {Component, OnInit, Input} from '@angular/core';
+import {UserService} from 'src/app/service/user.service';
+import {PlacerequestService} from 'src/app/service/placerequest.service';
+import {PlaceRequests} from 'src/app/model/PlaceRequests';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-requestedplace',
@@ -17,6 +18,7 @@ export class RequestedplaceComponent implements OnInit {
   constructor(
     private userService: UserService,
     private placeRequestService: PlacerequestService,
+    private authenticationService: AuthenticationService,
   ) {
   }
 
@@ -25,7 +27,8 @@ export class RequestedplaceComponent implements OnInit {
   }
 
   loadPlaceRequestByManager() {
-    this.placeRequestService.getPlaceRequestsByManager().subscribe(
+    let username = this.authenticationService.getUserName();
+    this.placeRequestService.getPlaceRequestsByManager(username).subscribe(
       response => {
         this.placeRequests = response;
         this.readUsers(this.placeRequests);
@@ -63,7 +66,7 @@ export class RequestedplaceComponent implements OnInit {
 
   readUsers(placeRequests: PlaceRequests[]) {
     for (const placeRequest of placeRequests) {
-      this.userService.getUserById(placeRequest.username).subscribe(
+      this.userService.getUserByUsername(placeRequest.username).subscribe(
         response => {
           placeRequest.user = response;
         }
