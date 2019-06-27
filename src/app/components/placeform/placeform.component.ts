@@ -22,11 +22,11 @@ export class PlaceformComponent implements OnChanges {
   ) { }
 
   ngOnChanges() {
-    this.loadUserById(this._selectedPlace.userId);
+    this.loadUserByUsername(this._selectedPlace.username);
   }
 
-  loadUserById(id: number) {
-    this.userService.getUserById(id).subscribe(
+  loadUserByUsername(username: string) {
+    this.userService.getUserByUsername(username).subscribe(
       response => {
         this.user = response;
       }
