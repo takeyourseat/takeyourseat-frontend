@@ -13,7 +13,6 @@ export class PlaceRequests {
     this.id = id;
     this.approved = approved;
     this.managerId = managerId;
-    this.userId = userId;
     this.place = place;
     this.user = user;
   }

@@ -9,12 +9,12 @@ export class Place {
   office: Office;
   username: string;
 
-  constructor(id: number, coordinateX: number, coordinateY: number, office: Office, userId: number) {
+  constructor(id: number, coordinateX: number, coordinateY: number, office: Office, username: string) {
     this.id = id;
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
     this.office = office;
-    this.userId = userId;
+    this.username = username;
   }
 }
 

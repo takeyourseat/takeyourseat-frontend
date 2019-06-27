@@ -63,7 +63,7 @@ export class RequestedplaceComponent implements OnInit {
 
   readUsers(placeRequests: PlaceRequests[]) {
     for (const placeRequest of placeRequests) {
-      this.userService.getUserById(placeRequest.username).subscribe(
+      this.userService.getUserByUsername(placeRequest.username).subscribe(
         response => {
           placeRequest.user = response;
         }
