@@ -4,6 +4,8 @@ import { UserService } from '../../service/user.service';
 import { PlacerequestService } from '../../service/placerequest.service';
 import { PlaceService } from '../../service/place.service';
 import { error } from '@angular/compiler/src/util';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-userplacerequest',
@@ -17,15 +19,18 @@ export class UserplacerequestComponent implements OnInit {
 
   constructor(
     private placeRequestService: PlacerequestService,
+    private authenticationService: AuthenticationService,
   ) {
   }
 
   ngOnInit() {
-    this.loadPlaceRequestsByUserId(5);
+    this.loadPlaceRequestsByUsername(this.authenticationService.getUserName());
   }
 
-  loadPlaceRequestsByUserId(userId: number) {
-    this.placeRequestService.getPlaceRequestsByUserId(userId).subscribe(
+  loadPlaceRequestsByUsername(username: string) {
+    if(username == null)
+      AlertsComponent.displayDanger("You have to be logged in to view this page, please log in again")
+    this.placeRequestService.getPlaceRequestsByUsername(username).subscribe(
       response => {
         this.placeRequests = response;
         if (this.placeRequests.length === 0) {

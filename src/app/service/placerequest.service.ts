@@ -27,7 +27,7 @@ export class PlacerequestService {
     return this.http.post<PlaceRequests>(apiURL + `requests/${placeId}`, {});
   }
 
-  getPlaceRequestsByUserId(userId: number) {
-    return this.http.get <PlaceRequests[]>(apiURL + `requests?user=${userId}`);
+  getPlaceRequestsByUsername(username: string) {
+    return this.http.get <PlaceRequests[]>(apiURL + `requests?user=${username}`);
   }
 }

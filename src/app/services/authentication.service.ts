@@ -27,6 +27,7 @@ export class AuthenticationService {
       .subscribe(
         data => {
           sessionStorage.setItem("access_token", data['access_token'])
+          sessionStorage.setItem("username", loginUsername)
           ifSucces(data)
         },
         error => {
@@ -39,15 +40,23 @@ export class AuthenticationService {
     return sessionStorage.getItem('access_token');
   }
 
+  getUserName():string{
+    return sessionStorage.getItem('username');
+  }
+
   isUserLoggedIn():boolean{
-    if(sessionStorage.getItem('access_token'))
-      return true
-    else 
+    if(!sessionStorage.getItem('access_token'))
       return false
+    else if(!sessionStorage.getItem('username'))
+      return false
+    else 
+      return true
   }
 
   logOut() {
     sessionStorage.removeItem('access_token')
+    sessionStorage.removeItem('username')
+    
   }
   
 }
