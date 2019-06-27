@@ -5,7 +5,7 @@ export class PlaceRequests {
   id: number;
   approved: boolean;
   managerId: number;
-  userId: number;
+  username: string;
   place: Place;
   user: User;
 

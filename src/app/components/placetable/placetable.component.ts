@@ -42,7 +42,7 @@ export class PlacetableComponent implements OnInit {
       }
     }
     this._places.forEach(place => {
-      this.schema[place.coordinateX][place.coordinateY] = { ...place, isPlace: true, isAvailable: !place.userId };
+      this.schema[place.coordinateX][place.coordinateY] = { ...place, isPlace: true, isAvailable: !place.username };
     });
   }
 

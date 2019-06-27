@@ -7,7 +7,7 @@ export class Place {
   floor: number;
   description: string;
   office: Office;
-  userId: number;
+  username: string;
 
   constructor(id: number, coordinateX: number, coordinateY: number, office: Office, userId: number) {
     this.id = id;
