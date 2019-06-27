@@ -11,8 +11,8 @@ export class PlacerequestService {
   constructor(private http: HttpClient) {
   }
 
-  getPlaceRequestsByManager() {
-    return this.http.get<PlaceRequests[]>(apiURL + `requests`);
+  getPlaceRequestsByManager(reviewer: string) {
+    return this.http.get<PlaceRequests[]>(apiURL + `requests?reviewer=${reviewer}`);
   }
 
   declinePlaceRequest(id: number) {
