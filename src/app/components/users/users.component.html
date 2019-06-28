@@ -84,6 +84,28 @@
           </div>
 
           <div class="form-group">
+            <label for="password">
+              <th>Password</th>
+            </label>
+            <input type="text"
+                   id="password"
+                   class="form-control"
+                   name="password"
+                   placeholder="Enter here the password"
+                   [(ngModel)]="model.password"
+                   #password="ngModel"
+                   [ngClass]="{'is invalid': f.submitted && password.invalid}"
+                   required/>
+   
+            <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+            <div *ngIf="f.submitted && password.invalid" class="invalid-input">
+   
+              <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+              <div *ngIf="password.errors?.required">Please, enter the password for new employee</div>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="jobTitle">
               <th>Job Title</th>
             </label>
