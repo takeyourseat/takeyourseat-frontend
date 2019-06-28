@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Place } from '../../model/Place';
 import { User } from '../../model/User';
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-placeform',

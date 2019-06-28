@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {UserService} from 'src/app/service/user.service';
-import {PlacerequestService} from 'src/app/service/placerequest.service';
+import {UserService} from 'src/app/services/user.service';
+import {PlacerequestService} from 'src/app/services/placerequest.service';
 import {PlaceRequests} from 'src/app/model/PlaceRequests';
 import {AuthenticationService} from '../../services/authentication.service';
 
