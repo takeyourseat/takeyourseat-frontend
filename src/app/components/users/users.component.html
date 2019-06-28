@@ -1,0 +1,226 @@
+<h3>
+  <div layout="row" class="container text-center">
+    Welcome to user management
+  </div>
+</h3>
+
+<div class="container">
+  <tabs>
+
+    <!--First tab-->
+    <tab tabTitle="Create user">
+
+      <!--Functionality for first tab is below-->
+      <div style="width: 400px;">
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && createUser()" novalidate class="create-user-form">
+
+          <div class="form-group">
+            <label for="firstName">
+              <th>First Name</th>
+            </label>
+            <input type="text" id="firstName" class="form-control" name="firstName"
+              placeholder="Enter here your first name" [(ngModel)]="model.fName" #firstname="ngModel"
+              [ngClass]="{'is invalid': f.submitted && firstname.invalid}" required />
+
+            <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+            <div *ngIf="f.submitted && firstname.invalid" class="invalid-input">
+
+              <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+              <div *ngIf="firstname.errors?.required">Please, enter the first name of the employee</div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">
+              <th>Last Name</th>
+            </label>
+            <input type="text" id="lastName" class="form-control" name="lastName"
+              placeholder="Enter here your last name" [(ngModel)]="model.lName" #lastname="ngModel"
+              [ngClass]="{'is invalid': f.submitted && lastname.invalid}" required />
+
+            <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+            <div *ngIf="f.submitted && lastname.invalid" class="invalid-input">
+
+              <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+              <div *ngIf="lastname.errors?.required">Please, enter the last name of the employee</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              <th>Email</th>
+            </label>
+            <input type="text" id="email" class="form-control" name="email" placeholder="Enter here your email"
+              [(ngModel)]="model.email" #email="ngModel" [ngClass]="{'is invalid': f.submitted && email.invalid}"
+              required />
+            <!--                 pattern="[0-9]*"-->
+            <!--          />-->
+
+            <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+            <div *ngIf="f.submitted && email.invalid" class="invalid-input">
+
+              <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+              <div *ngIf="email.errors?.required">Please, enter the email address</div>
+              <div *ngIf="email.errors?.email">Field is not valid</div>
+              <!--            <div *ngIf="age.hasError('pattern')">Age should have only digits</div>-->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="username">
+              <th>Username</th>
+            </label>
+            <input type="text" id="username" class="form-control" name="username" placeholder="Enter here your username"
+              [(ngModel)]="model.username" #username="ngModel"
+              [ngClass]="{'is invalid': f.submitted && username.invalid}" required />
+
+            <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+            <div *ngIf="f.submitted && username.invalid" class="invalid-input">
+
+              <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+              <div *ngIf="username.errors?.required">Please, enter the username of the employee</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="jobTitle">
+              <th>Job Title</th>
+            </label>
+            <input type="text" id="jobTitle" class="form-control" name="jobTitle"
+              placeholder="Enter here your Job Title" [(ngModel)]="model.jobTitle" #jobTitle="ngModel"
+              [ngClass]="{'is invalid': f.submitted && jobTitle.invalid}" required />
+
+            <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+            <div *ngIf="f.submitted && jobTitle.invalid" class="invalid-input">
+
+              <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+              <div *ngIf="jobTitle.errors?.required">Please, enter the Job Title of the employee</div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <th>Role</th>
+            <select id="role" name="role" [(ngModel)]="model.role">
+              <option *ngFor="let role of allRoles" [ngValue]="role">
+                {{role.name}}
+              </option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <th>Manager</th>
+            <select id="manager" name="manager" [(ngModel)]="model.manager">
+              <option *ngFor="let users of allUsers" [ngValue]="users">
+                <!--[ngValue]="users.fName + users.lName + users.username + users.email + users.jobTitle + users.manager + users.role">-->
+                {{users.fName + " " + users.lName}}
+              </option>
+            </select>
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Create</button>
+        </form>
+      </div>
+    </tab>
+
+
+    <!--Second tab-->
+    <tab tabTitle="Search employee">
+      <div style="width: 400px;">
+        <form name="search" (ngSubmit)="getOneUser()" novalidate class="search-user-form">
+
+          Here you will search needed employee
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1>Search employee</h1>
+              <br>
+            </div>
+
+            <div class="input-group">
+              <input type="text" id="search user" class="form-control" name="search user"
+                placeholder="Enter here what you know about the user" [(ngModel)]="searchModel.searchArgument" />
+              <span>
+                <button type="submit" class="btn btn-primary ml-4">Search</button>
+              </span>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>JobTitile</th>
+                    <th>Manager</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let users of oneUser">
+                    <td>{{users.fName}}</td>
+                    <td>{{users.lName}}</td>
+                    <td>{{users.email}}</td>
+                    <td>{{users.username}}</td>
+                    <td>{{users.jobTitle}}</td>
+                    <td>{{users.manager != null ? users.manager.fName : ''}}</td>
+                    <td>{{users.role.name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </tab>
+
+
+    <!--Third tab-->
+    <tab tabTitle="Show all employees">
+      Here will be list of all employee
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1>Employees</h1>
+          <br>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>JobTitile</th>
+                <th>Manager</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let users of allUsers">
+
+                <td>{{users.fName}}</td>
+                <td>{{users.lName}}</td>
+                <td>{{users.email}}</td>
+                <td>{{users.username}}</td>
+                <td>{{users.jobTitle}}</td>
+                <td>{{users.manager != null ? users.manager.fName : ''}}</td>
+                <td>{{users.role.name}}</td>
+                <td>
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                </td>
+              </tr>
+              <!--         <td><button (click)="deleteEmployee(employee.id)">Delete</button>-->
+              <!--          </td>-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </tab>
+  </tabs>
+</div>

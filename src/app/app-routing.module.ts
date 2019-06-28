@@ -7,14 +7,18 @@ import {UserplacerequestComponent} from './components/userplacerequest/userplace
 import { UserLoggedInGuardService } from './services/guards/route-guard.service';
 import { UserIsAnnoymousService } from './services/guards/user-is-annoymous.service';
 import { LogoutComponent } from './components/logout/logout.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {path: 'places', component: AllplacesComponent, canActivate:[UserLoggedInGuardService]},
   {path: 'requestedplace', component: RequestedplaceComponent, canActivate:[UserLoggedInGuardService]},
   {path: 'userplacerequest', component: UserplacerequestComponent, canActivate:[UserLoggedInGuardService]},
 
+  {path:'users', component: UsersComponent},
+
   {path:'login', component:LoginComponent, canActivate:[UserIsAnnoymousService]},
   {path:'logout', component: LogoutComponent},
+
   {path:'**', component:AllplacesComponent, canActivate:[UserLoggedInGuardService]}
 ];
 

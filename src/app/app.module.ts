@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -18,6 +18,8 @@ import { UserplacerequestComponent } from './components/userplacerequest/userpla
 import { FooterComponent } from './components/footer/footer.component';
 import { InterceptorService } from './services/http/HttpTokenInterceptor.service';
 import { LogoutComponent } from './components/logout/logout.component';
+import { UsersComponent } from './components/users/users.component';
+import {TabModule} from "angular-tabs-component";
 
 
 @NgModule({
@@ -35,13 +37,18 @@ import { LogoutComponent } from './components/logout/logout.component';
     RequestedplaceComponent,
     UserplacerequestComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+
+    AppRoutingModule,
+    TabModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
