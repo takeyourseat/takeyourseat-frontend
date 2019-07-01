@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
         location.reload();
       },
       error => {
-        alert("Ошибка при создании пользователя");
+        alert("An error has been occured during the creating the new employee");
       }
     );
   }
@@ -104,7 +104,7 @@ export interface UserViewModel {
   username: string;
   jobTitle: string;
   manager: string;
-  role: string
+  role: string;
 }
 
 export interface UserSearchModel {

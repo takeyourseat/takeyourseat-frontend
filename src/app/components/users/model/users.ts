@@ -9,26 +9,26 @@ export interface AllUsers {
       fName: string;
     };
     role: {
-      name: string
-    }
+      name: string;
+    };
   }
   
   export interface OneUser {
-    id:string
+    id:string;
     fName: string;
     lName: string;
     email: string;
     username: string;
     jobTitle: string;
     manager: {
-      fName: string
+      fName: string;
     };
     role: {
-      name: string
-    }
+      name: string;
+    };
   }
   
   export interface Role {
     id: string;
-    name: string
+    name: string;
   }
