@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Place } from 'src/app/model/Place';
 import 'bootstrap/js/dist/modal';
-import {PlacerequestService} from '../../service/placerequest.service';
+import {PlacerequestService} from '../../services/placerequest.service';
 import {PlaceRequests} from '../../model/PlaceRequests';
 
 @Component({
