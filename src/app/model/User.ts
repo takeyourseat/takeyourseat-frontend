@@ -3,8 +3,8 @@ export class User {
   password: string;
   email: string;
   username: string;
-  firstName: string;
-  lastName: string;
+  fName: string;
+  lName: string;
   jobTitle: string;
   enabled: boolean;
   accountNonExpired: boolean;
@@ -17,8 +17,8 @@ export class User {
     this.password = password;
     this.email = email;
     this.username = username;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.fName = firstName;
+    this.lName = lastName;
     this.jobTitle = jobTitle;
     this.enabled = enabled;
     this.accountNonExpired = accountNonExpired;

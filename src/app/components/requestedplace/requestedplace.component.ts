@@ -27,7 +27,7 @@ export class RequestedplaceComponent implements OnInit {
   }
 
   loadPlaceRequestByManager() {
-    let username = this.authenticationService.getUserName();
+    const username = this.authenticationService.getUserName();
     this.placeRequestService.getPlaceRequestsByManager(username).subscribe(
       response => {
         this.placeRequests = response;

@@ -14,8 +14,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let placerequest of placeRequests">
-        <td>{{placerequest.user?.firstName}}</td>
-        <td>{{placerequest.user?.lastName}}</td>
+        <td>{{placerequest.user?.fName}}</td>
+        <td>{{placerequest.user?.lName}}</td>
         <td>{{placerequest.place?.office.floor}}</td>
         <td>{{placerequest.place?.office.number}}</td>
         <td>{{placerequest.place?.coordinateX}}</td>
