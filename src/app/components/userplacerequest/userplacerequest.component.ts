@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlaceRequests} from '../../model/PlaceRequests';
-import {UserService} from '../../service/user.service';
-import {PlacerequestService} from '../../service/placerequest.service';
-import {PlaceService} from '../../service/place.service';
+import {UserService} from '../../services/user.service';
+import {PlacerequestService} from '../../services/placerequest.service';
+import {PlaceService} from '../../services/place.service';
 import {error} from '@angular/compiler/src/util';
 import {AuthenticationService} from 'src/app/services/authentication.service';
 import {AlertsComponent} from '../alerts/alerts.component';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OfficeService } from 'src/app/service/office.service';
-import { PlaceService } from 'src/app/service/place.service';
+import { OfficeService } from 'src/app/services/office.service';
+import { PlaceService } from 'src/app/services/place.service';
 import { Office } from 'src/app/model/Office';
 import { Place } from 'src/app/model/Place';
 import { PlacetableComponent } from '../placetable/placetable.component';
