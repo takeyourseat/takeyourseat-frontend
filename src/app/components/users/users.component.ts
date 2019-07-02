@@ -14,10 +14,7 @@ export class UsersComponent implements OnInit {
   allUsers: AllUsers[] = [];
   allRoles: Role[] = [];
 
-
-  searchModel: UserSearchModel = {
-    searchArgument: ''
-  };
+searchArgument: string;
 
   roleViewModel: RoleViewModel = {
     id: '',
@@ -36,7 +33,7 @@ export class UsersComponent implements OnInit {
 
 
   public createUser() {
-    const url = 'http://localhost:8085/users/createUser';
+    const url = 'http://localhost:8085/users';
     this.http.post(url, this.model).subscribe(
       res => {
         alert('New employee was successfully created! \n Congratulations! ');
@@ -49,8 +46,8 @@ export class UsersComponent implements OnInit {
   }
 
   public getOneUser(searchArgument: string) {
-    const url = `http://localhost:8085/users/${searchArgument}/info`;
-    this.http.post<OneUser[]>(url, this.searchModel).subscribe(
+    const url = `http://localhost:8085/users?searchArgument=${searchArgument}`;
+    this.http.get<OneUser[]>(url).subscribe(
       res => {
 
         this.oneUser = res;
@@ -62,7 +59,7 @@ export class UsersComponent implements OnInit {
   }
 
   public getRoles() {
-    const url = 'http://localhost:8085/users/getRoles';
+    const url = 'http://localhost:8085/roles';
     this.http.get<Role[]>(url).subscribe(
       res => {
         this.allRoles = res;
@@ -75,7 +72,7 @@ export class UsersComponent implements OnInit {
 
 
   public getUsers() {
-    const url = 'http://localhost:8085/users/getUsers';
+    const url = 'http://localhost:8085/users';
     this.http.get<AllUsers[]>(url).subscribe(
       res => {
         this.allUsers = res;
@@ -107,9 +104,6 @@ export interface UserViewModel {
   role: string;
 }
 
-export interface UserSearchModel {
-  searchArgument: string;
-}
 
 export interface RoleViewModel {
   id: string;

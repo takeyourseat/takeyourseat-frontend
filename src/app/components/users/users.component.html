@@ -180,7 +180,7 @@
     <!--Second tab-->
     <tab tabTitle="Search employee">
       <div style="width: 400px;">
-        <form name="search" (ngSubmit)="getOneUser()" novalidate class="search-user-form">
+        <form name="search" (ngSubmit)="getOneUser(searchArgument)" novalidate class="search-user-form">
 
           Here you will search needed employee
           <div class="panel panel-default">
@@ -191,7 +191,7 @@
 
             <div class="input-group">
               <input type="text" id="search user" class="form-control" name="search user"
-                     placeholder="Enter here what you know about the user" [(ngModel)]="searchModel.searchArgument"/>
+                     placeholder="Enter here what you know about the user" [(ngModel)]="searchArgument"/>
               <span>
                 <button type="submit" class="btn btn-primary ml-4">Search</button>
               </span>
