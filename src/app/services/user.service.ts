@@ -16,7 +16,7 @@ export class UserService {
   }
 
   getUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8085/' + `getUserByUsername?username=${username}`).pipe(catchError(this.handleError));
+    return this.http.get<User>('http://localhost:8085/' + `users/${username}`).pipe(catchError(this.handleError));
   }
 
   getUsers(): Observable<User[]> {
