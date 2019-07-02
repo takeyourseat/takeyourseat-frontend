@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {AllUsers, OneUser, Role} from "./model/users";
+import {HttpClient} from '@angular/common/http';
+import {AllUsers, OneUser, Role} from './model/users';
 
 
 @Component({
@@ -14,10 +14,7 @@ export class UsersComponent implements OnInit {
   allUsers: AllUsers[] = [];
   allRoles: Role[] = [];
 
-
-  searchModel: UserSearchModel = {
-    searchArgument: ''
-  };
+searchArgument: string;
 
   roleViewModel: RoleViewModel = {
     id: '',
@@ -36,52 +33,52 @@ export class UsersComponent implements OnInit {
 
 
   public createUser() {
-    let url = "http://localhost:8085/createUser";
+    const url = 'http://localhost:8085/users';
     this.http.post(url, this.model).subscribe(
       res => {
-        alert("New employee was successfully created! \n Congratulations! ");
+        alert('New employee was successfully created! \n Congratulations! ');
         location.reload();
       },
       error => {
-        alert("Ошибка при создании пользователя");
+        alert('An error has been occured during the creating the new employee');
       }
     );
   }
 
-  public getOneUser() {
-    let url = "http://localhost:8085/getOneUser";
-    this.http.post<OneUser[]>(url, this.searchModel).subscribe(
+  public getOneUser(searchArgument: string) {
+    const url = `http://localhost:8085/users?searchArgument=${searchArgument}`;
+    this.http.get<OneUser[]>(url).subscribe(
       res => {
 
         this.oneUser = res;
       },
       err => {
-        alert("Couldn't perform searching. Something is going wrong in app!")
+        alert('Could not perform searching. Something is going wrong in app!');
       }
-    )
+    );
   }
 
   public getRoles() {
-    let url = "http://localhost:8085/getRoles";
+    const url = 'http://localhost:8085/roles';
     this.http.get<Role[]>(url).subscribe(
       res => {
         this.allRoles = res;
       },
       err => {
-        alert("Something goes wrong with roles")
+        alert('Something goes wrong with roles');
       }
     );
   }
 
 
   public getUsers() {
-    let url = "http://localhost:8085/getUsers";
+    const url = 'http://localhost:8085/users';
     this.http.get<AllUsers[]>(url).subscribe(
       res => {
         this.allUsers = res;
       },
       err => {
-        alert("Something goes wrong")
+        alert('Something goes wrong');
       }
     );
   }
@@ -91,8 +88,8 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUsers()
-    this.getRoles()
+    this.getUsers();
+    this.getRoles();
   }
 
 }
@@ -104,16 +101,13 @@ export interface UserViewModel {
   username: string;
   jobTitle: string;
   manager: string;
-  role: string
+  role: string;
 }
 
-export interface UserSearchModel {
-  searchArgument: string;
-}
 
 export interface RoleViewModel {
   id: string;
-  name: string
+  name: string;
 }
 
 

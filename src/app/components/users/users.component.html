@@ -18,9 +18,14 @@
             <label for="firstName">
               <th>First Name</th>
             </label>
-            <input type="text" id="firstName" class="form-control" name="firstName"
-              placeholder="Enter here your first name" [(ngModel)]="model.fName" #firstname="ngModel"
-              [ngClass]="{'is invalid': f.submitted && firstname.invalid}" required />
+            <input type="text"
+                   id="firstName"
+                   class="form-control"
+                   name="firstName"
+                   placeholder="Enter here your first name"
+                   [(ngModel)]="model.fName"
+                   #firstname="ngModel"
+                   [ngClass]="{'is invalid': f.submitted && firstname.invalid}" required/>
 
             <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
             <div *ngIf="f.submitted && firstname.invalid" class="invalid-input">
@@ -35,9 +40,14 @@
             <label for="lastName">
               <th>Last Name</th>
             </label>
-            <input type="text" id="lastName" class="form-control" name="lastName"
-              placeholder="Enter here your last name" [(ngModel)]="model.lName" #lastname="ngModel"
-              [ngClass]="{'is invalid': f.submitted && lastname.invalid}" required />
+            <input type="text"
+                   id="lastName"
+                   class="form-control"
+                   name="lastName"
+                   placeholder="Enter here your last name"
+                   [(ngModel)]="model.lName"
+                   #lastname="ngModel"
+                   [ngClass]="{'is invalid': f.submitted && lastname.invalid}" required/>
 
             <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
             <div *ngIf="f.submitted && lastname.invalid" class="invalid-input">
@@ -51,11 +61,14 @@
             <label for="email">
               <th>Email</th>
             </label>
-            <input type="text" id="email" class="form-control" name="email" placeholder="Enter here your email"
-              [(ngModel)]="model.email" #email="ngModel" [ngClass]="{'is invalid': f.submitted && email.invalid}"
-              required />
-            <!--                 pattern="[0-9]*"-->
-            <!--          />-->
+            <input type="text"
+                   id="email"
+                   class="form-control"
+                   name="email"
+                   placeholder="Enter here your email"
+                   [(ngModel)]="model.email"
+                   #email="ngModel" [ngClass]="{'is invalid': f.submitted && email.invalid}"
+                   required/>
 
             <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
             <div *ngIf="f.submitted && email.invalid" class="invalid-input">
@@ -63,7 +76,6 @@
               <!-- next line will check NAME field and if information has wrong type, then will be notification -->
               <div *ngIf="email.errors?.required">Please, enter the email address</div>
               <div *ngIf="email.errors?.email">Field is not valid</div>
-              <!--            <div *ngIf="age.hasError('pattern')">Age should have only digits</div>-->
             </div>
           </div>
 
@@ -71,9 +83,14 @@
             <label for="username">
               <th>Username</th>
             </label>
-            <input type="text" id="username" class="form-control" name="username" placeholder="Enter here your username"
-              [(ngModel)]="model.username" #username="ngModel"
-              [ngClass]="{'is invalid': f.submitted && username.invalid}" required />
+            <input type="text"
+                   id="username"
+                   class="form-control"
+                   name="username"
+                   placeholder="Enter here your username"
+                   [(ngModel)]="model.username"
+                   #username="ngModel"
+                   [ngClass]="{'is invalid': f.submitted && username.invalid}" required/>
 
             <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
             <div *ngIf="f.submitted && username.invalid" class="invalid-input">
@@ -96,10 +113,10 @@
                    #password="ngModel"
                    [ngClass]="{'is invalid': f.submitted && password.invalid}"
                    required/>
-   
+
             <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
             <div *ngIf="f.submitted && password.invalid" class="invalid-input">
-   
+
               <!-- next line will check NAME field and if information has wrong type, then will be notification -->
               <div *ngIf="password.errors?.required">Please, enter the password for new employee</div>
             </div>
@@ -109,9 +126,14 @@
             <label for="jobTitle">
               <th>Job Title</th>
             </label>
-            <input type="text" id="jobTitle" class="form-control" name="jobTitle"
-              placeholder="Enter here your Job Title" [(ngModel)]="model.jobTitle" #jobTitle="ngModel"
-              [ngClass]="{'is invalid': f.submitted && jobTitle.invalid}" required />
+            <input type="text"
+                   id="jobTitle"
+                   class="form-control"
+                   name="jobTitle"
+                   placeholder="Enter here your Job Title"
+                   [(ngModel)]="model.jobTitle"
+                   #jobTitle="ngModel"
+                   [ngClass]="{'is invalid': f.submitted && jobTitle.invalid}" required/>
 
             <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
             <div *ngIf="f.submitted && jobTitle.invalid" class="invalid-input">
@@ -124,8 +146,11 @@
 
           <div class="form-group">
             <th>Role</th>
-            <select id="role" name="role" [(ngModel)]="model.role">
-              <option *ngFor="let role of allRoles" [ngValue]="role">
+            <select id="role"
+                    name="role"
+                    [(ngModel)]="model.role">
+              <option *ngFor="let role of allRoles"
+                      [ngValue]="role">
                 {{role.name}}
               </option>
             </select>
@@ -134,8 +159,11 @@
 
           <div class="form-group">
             <th>Manager</th>
-            <select id="manager" name="manager" [(ngModel)]="model.manager">
-              <option *ngFor="let users of allUsers" [ngValue]="users">
+            <select id="manager"
+                    name="manager"
+                    [(ngModel)]="model.manager">
+              <option *ngFor="let users of allUsers"
+                      [ngValue]="users.id">
                 <!--[ngValue]="users.fName + users.lName + users.username + users.email + users.jobTitle + users.manager + users.role">-->
                 {{users.fName + " " + users.lName}}
               </option>
@@ -152,7 +180,7 @@
     <!--Second tab-->
     <tab tabTitle="Search employee">
       <div style="width: 400px;">
-        <form name="search" (ngSubmit)="getOneUser()" novalidate class="search-user-form">
+        <form name="search" (ngSubmit)="getOneUser(searchArgument)" novalidate class="search-user-form">
 
           Here you will search needed employee
           <div class="panel panel-default">
@@ -163,7 +191,7 @@
 
             <div class="input-group">
               <input type="text" id="search user" class="form-control" name="search user"
-                placeholder="Enter here what you know about the user" [(ngModel)]="searchModel.searchArgument" />
+                     placeholder="Enter here what you know about the user" [(ngModel)]="searchArgument"/>
               <span>
                 <button type="submit" class="btn btn-primary ml-4">Search</button>
               </span>
@@ -171,26 +199,26 @@
             <div class="panel-body">
               <table class="table table-striped table-bordered">
                 <thead>
-                  <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>JobTitile</th>
-                    <th>Manager</th>
-                    <th>Role</th>
-                  </tr>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>JobTitile</th>
+                  <th>Manager</th>
+                  <th>Role</th>
+                </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let users of oneUser">
-                    <td>{{users.fName}}</td>
-                    <td>{{users.lName}}</td>
-                    <td>{{users.email}}</td>
-                    <td>{{users.username}}</td>
-                    <td>{{users.jobTitle}}</td>
-                    <td>{{users.manager != null ? users.manager.fName : ''}}</td>
-                    <td>{{users.role.name}}</td>
-                  </tr>
+                <tr *ngFor="let users of oneUser">
+                  <td>{{users.fName}}</td>
+                  <td>{{users.lName}}</td>
+                  <td>{{users.email}}</td>
+                  <td>{{users.username}}</td>
+                  <td>{{users.jobTitle}}</td>
+                  <td>{{users.manager != null ? users.manager.fName : ''}}</td>
+                  <td>{{users.role.name}}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
@@ -211,37 +239,60 @@
         <div class="panel-body">
           <table class="table table-striped table-bordered">
             <thead>
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>JobTitile</th>
-                <th>Manager</th>
-                <th>Role</th>
-                <th>Actions</th>
-              </tr>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>JobTitile</th>
+              <th>Manager</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let users of allUsers">
+            <tr *ngFor="let users of allUsers">
 
-                <td>{{users.fName}}</td>
-                <td>{{users.lName}}</td>
-                <td>{{users.email}}</td>
-                <td>{{users.username}}</td>
-                <td>{{users.jobTitle}}</td>
-                <td>{{users.manager != null ? users.manager.fName : ''}}</td>
-                <td>{{users.role.name}}</td>
-                <td>
-                  <button type="submit" class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
-              <!--         <td><button (click)="deleteEmployee(employee.id)">Delete</button>-->
-              <!--          </td>-->
+              <td>{{users.fName}}</td>
+              <td>{{users.lName}}</td>
+              <td>{{users.email}}</td>
+              <td>{{users.username}}</td>
+              <td>{{users.jobTitle}}</td>
+              <td>{{users.manager != null ? users.manager.fName : ''}}</td>
+              <td>{{users.role.name}}</td>
+              <td>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</button>
+              </td>
+            </tr>
+            <!--         <td><button (click)="deleteEmployee(employee.id)">Delete</button>-->
+            <!--          </td>-->
             </tbody>
           </table>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editUserModal">Edit the user</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Here will be the edit module for existing user</p>
+
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </tab>
   </tabs>
