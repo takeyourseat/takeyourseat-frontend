@@ -2,6 +2,8 @@
   background-color: #0F3256;
 }
 
-a {
+.navbar-brand,
+.nav-link,
+.nav-item {
   color: white;
 }
