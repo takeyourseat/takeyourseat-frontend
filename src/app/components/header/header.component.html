@@ -15,7 +15,11 @@
         <a class="nav-link" routerLink="/users">Users</a>
       </li>
     </ul>
+
     <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item nav-item-right">
+        <a routerLink="/" class="nav-link"> {{authentificationService.loggedInUser?.fName}} {{authentificationService.loggedInUser?.lName}}, </a>
+      </li>
       <li class="nav-item nav-item-right">
         <a routerLink="logout" routerlinkActive="active" class="nav-link">Log out</a>
       </li>
