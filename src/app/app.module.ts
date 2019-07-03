@@ -21,6 +21,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { UsersComponent } from './components/users/users.component';
 import {TabModule} from "angular-tabs-component";
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {TabModule} from "angular-tabs-component";
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
