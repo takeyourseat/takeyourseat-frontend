@@ -1,3 +1,33 @@
-<p>
-  roles works!
-</p>
+<div class="container">
+  <h1>Roles</h1>
+  
+  <div class="form-group">
+    <input type="text" class="form-control w-50 d-inline mr-2">
+    <div class="btn btn-primary d-inline"> Add </div>
+    <div class="btn btn-success d-inline float-right">Save</div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Role</th>
+      <th scope="col">Office</th>
+      <th scope="col">Place</th>
+      <th scope="col">PlaceRequest</th>
+      <th scope="col">User</th>
+      <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let role of roles;">
+      <td>{{ role.role }}</td>
+      <td>{{ role.grants.office }}</td>
+      <td>{{ role.grants.place }}</td>
+      <td>{{ role.grants.placerequest }}</td>
+      <td>{{ role.grants.user }}</td>
+      <td>{{ role.grants.role }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
