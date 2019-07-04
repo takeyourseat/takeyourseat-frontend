@@ -21,7 +21,14 @@
     <tbody>
     <tr *ngFor="let role of roles;">
       <td>{{ role.role }}</td>
-      <td>{{ role.grants.office }}</td>
+      <td>
+          <select class="custom-select custom-select-sm" >
+              <option [selected]="role.office==0" value="0">None</option>
+              <option [selected]="role.office==1" value="1">Read</option>
+              <option value="2">Write</option>
+          </select>
+          {{ role.grants.office }}
+      </td>
       <td>{{ role.grants.place }}</td>
       <td>{{ role.grants.placerequest }}</td>
       <td>{{ role.grants.user }}</td>
@@ -29,5 +36,7 @@
     </tr>
     </tbody>
   </table>
+
+  
 
 </div>
