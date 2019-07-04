@@ -22,6 +22,7 @@ import { UsersComponent } from './components/users/users.component';
 import {TabModule} from "angular-tabs-component";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     LogoutComponent,
     UsersComponent,
+    RolesComponent,
   ],
   imports: [
     BrowserModule,
