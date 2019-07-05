@@ -21,4 +21,8 @@ export class RolesService {
     return this.http.post(AppConstants.AUTHORIZATION_SERVICE_URL()+`roles/${role}/grants/datatypes/${datatype}/${permission}`,null)
   }
 
+  createRole(name:string){
+    return this.http.post(AppConstants.AUTHORIZATION_SERVICE_URL()+'roles',{name: name})
+  }
+
 }

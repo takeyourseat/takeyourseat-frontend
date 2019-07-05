@@ -10,17 +10,27 @@ import { Role, Grant } from '../../model/Role';
 export class RolesComponent implements OnInit {
 
   roles : Role[]
+  newRoleName:string;
 
   constructor(
     private rolesService : RolesService,
   ) { }
 
   ngOnInit() {
-    
+    this.getAllRoles()
+  }
+
+  getAllRoles(){
     this.rolesService.getAllRoles().subscribe(
       data => {        
         this.roles = data
       }
+    )
+  }
+
+  createRole(){
+    this.rolesService.createRole(this.newRoleName).subscribe(
+      data=> this.getAllRoles()
     )
   }
 

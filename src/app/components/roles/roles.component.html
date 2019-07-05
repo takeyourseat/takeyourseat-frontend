@@ -2,8 +2,8 @@
   <h1>Roles</h1>
   
   <div class="form-group">
-    <input type="text" class="form-control w-50 d-inline mr-2">
-    <div class="btn btn-primary d-inline"> Add </div>
+    <input [(ngModel)]="newRoleName" type="text" class="form-control w-50 d-inline mr-2">
+    <div (click)="createRole()" class="btn btn-primary d-inline"> Add </div>
   </div>
 
   <table class="table table-striped">
