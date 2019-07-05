@@ -25,7 +25,8 @@ export class RolesComponent implements OnInit {
     this.rolesService.getAllRoles().subscribe(
       data => {        
         this.roles = data
-      }
+      },
+      exception=>this.displayExceptionMessages(exception),
     )
   }
 
@@ -35,7 +36,8 @@ export class RolesComponent implements OnInit {
         AlertsComponent.clearMessages()
         AlertsComponent.display("success",`Role ${this.newRoleName} has been successfully created`,5000)
         this.getAllRoles()
-      }
+      },
+      exception=>this.displayExceptionMessages(exception),
     )
   }
 
@@ -43,9 +45,17 @@ export class RolesComponent implements OnInit {
     this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype].permission).subscribe(
       data=>{
         AlertsComponent.clearMessages()
-        AlertsComponent.display("success",`Permission level for Role <strong> ${role.role} </strong> on domain <strong>${datatype}</strong> has been successfully updated`,5000)
-        
-    })
+        AlertsComponent.display("success",`Permission level for Role <strong> ${role.role} </strong> on domain <strong>${datatype}</strong> has been successfully updated`,5000) 
+    },
+    exception=>this.displayExceptionMessages(exception),
+    )
   }
 
+  displayExceptionMessages(exception){
+        if(exception.status==0){
+          AlertsComponent.display("danger",`Could not contact Authorization Server, please try again`)
+          return;
+        }
+        AlertsComponent.display("danger",`${exception.error.error?exception.error.error:''} ${exception.error.message?exception.error.message:''}`)
+      }
 }
