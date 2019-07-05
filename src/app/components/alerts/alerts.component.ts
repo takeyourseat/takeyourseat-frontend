@@ -22,21 +22,29 @@ export class AlertsComponent implements OnInit {
     return AlertsComponent.alerts;
   }
 
-    clearMessages() {
+    static clearMessages() {
     AlertsComponent.alerts = []
   }
 
-   close(alert: Alert) {
+   static expire(alert: Alert) {
+     if(AlertsComponent.alerts.indexOf(alert)!=-1)
     AlertsComponent.alerts.splice(AlertsComponent.alerts.indexOf(alert), 1);
   }
 
-   static display(type:string, message:string){
-    AlertsComponent.alerts.push({type,message})    
+   close(alert: Alert) {
+   AlertsComponent.alerts.splice(AlertsComponent.alerts.indexOf(alert), 1);
+ }
+
+   static display(type:string, message:string, dismissIn:number = 0){
+    let alert = {type,message}
+    AlertsComponent.alerts.push(alert)    
+    if(dismissIn!=0)
+      setTimeout(()=>{this.expire(alert)},dismissIn)
   }
 
   ngOnInit() {
     this.router.events.subscribe(
-      x => this.clearMessages()
+      x => AlertsComponent.clearMessages()
     )
   }
 }

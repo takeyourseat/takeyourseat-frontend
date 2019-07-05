@@ -32,7 +32,8 @@ export class RolesComponent implements OnInit {
   createRole(){
     this.rolesService.createRole(this.newRoleName).subscribe(
       data=> {
-        AlertsComponent.display("success",`Role ${this.newRoleName} has been successfully created`)
+        AlertsComponent.clearMessages()
+        AlertsComponent.display("success",`Role ${this.newRoleName} has been successfully created`,5000)
         this.getAllRoles()
       }
     )
@@ -41,7 +42,8 @@ export class RolesComponent implements OnInit {
   updateGrants(role:Role, datatype:string){
     this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype].permission).subscribe(
       data=>{
-        AlertsComponent.display("success",`Permission level for Role <strong> ${role.role} </strong> on domain <strong>${datatype}</strong> has been successfully updated`)
+        AlertsComponent.clearMessages()
+        AlertsComponent.display("success",`Permission level for Role <strong> ${role.role} </strong> on domain <strong>${datatype}</strong> has been successfully updated`,5000)
         
     })
   }
