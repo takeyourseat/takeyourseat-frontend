@@ -51,15 +51,15 @@ import { PermissionSelectorComponent } from './components/permission-selector/pe
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-
     AppRoutingModule,
     TabModule,
     ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
   ],
   bootstrap: [AppComponent],
-
+  entryComponents: [ModalComponent]
 })
 export class AppModule { }
