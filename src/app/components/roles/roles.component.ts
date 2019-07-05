@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RolesService } from '../../services/roles.service';
 import { Role, Grant } from '../../model/Role';
+import { AlertsComponent } from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-roles',
@@ -30,12 +31,19 @@ export class RolesComponent implements OnInit {
 
   createRole(){
     this.rolesService.createRole(this.newRoleName).subscribe(
-      data=> this.getAllRoles()
+      data=> {
+        AlertsComponent.display("success",`Role ${this.newRoleName} has been successfully created`)
+        this.getAllRoles()
+      }
     )
   }
 
   updateGrants(role:Role, datatype:string){
-    this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype].permission).subscribe(data=>{})
+    this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype].permission).subscribe(
+      data=>{
+        AlertsComponent.display("success",`Permission level for Role <strong> ${role.role} </strong> on domain <strong>${datatype}</strong> has been successfully updated`)
+        
+    })
   }
 
 }

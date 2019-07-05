@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   ifSucces = (data) => {
-    this.router.navigate(['/places'])//.then(() => AlertsComponent.displaySuccess("Log in successfull")) // disabled until dismissable alerts are available
+    this.router.navigate(['/places'])
   }
 
   ifFail(error){
-    AlertsComponent.displayDanger("Unable to Log in, please try again")
+    AlertsComponent.display("danger","Unable to Log in, please try again")
   }
 
 }

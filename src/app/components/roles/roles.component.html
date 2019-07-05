@@ -19,7 +19,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let role of roles;">
-      <td>{{ role.role }}</td>
+      <td>{{ role.role | titlecase }}</td>
       <td>
         <app-permission-selector (change)="updateGrants(role, 'office')" [(grant)]="role.grants.office" ></app-permission-selector>
       </td>

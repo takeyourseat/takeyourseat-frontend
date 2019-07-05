@@ -29,7 +29,7 @@ export class UserplacerequestComponent implements OnInit {
 
   loadPlaceRequestsByUsername(username: string) {
     if (username == null) {
-      AlertsComponent.displayDanger('You have to be logged in to view this page, please log in again');
+      AlertsComponent.display('danger','You have to be logged in to view this page, please log in again');
     }
     this.placeRequestService.getPlaceRequestsByUsername(username).subscribe(
       response => {
