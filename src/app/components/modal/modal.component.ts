@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Place } from 'src/app/model/Place';
-import 'bootstrap/js/dist/modal';
-import {PlacerequestService} from '../../services/placerequest.service';
-import {PlaceRequests} from '../../model/PlaceRequests';
+import { PlacerequestService } from '../../services/placerequest.service';
+import { PlaceRequests } from '../../model/PlaceRequests';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
@@ -19,9 +19,10 @@ export class ModalComponent implements OnInit {
   }
 
   constructor(
+    private modal: NgbModal,
     private placeRequestService: PlacerequestService
-
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -32,5 +33,9 @@ export class ModalComponent implements OnInit {
         this.placeRequest = response;
       }
     );
+  }
+
+  open() {
+    const modalRef = this.modal.open(ModalComponent);
   }
 }
