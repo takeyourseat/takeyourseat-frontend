@@ -23,6 +23,7 @@ import {TabModule} from "angular-tabs-component";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RolesComponent } from './components/roles/roles.component';
+import { PermissionSelectorComponent } from './components/permission-selector/permission-selector.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { RolesComponent } from './components/roles/roles.component';
     LogoutComponent,
     UsersComponent,
     RolesComponent,
+    PermissionSelectorComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RolesService } from '../../services/roles.service';
-import { Role } from '../../model/Role';
+import { Role, Grant } from '../../model/Role';
 
 @Component({
   selector: 'app-roles',
@@ -18,10 +18,14 @@ export class RolesComponent implements OnInit {
   ngOnInit() {
     
     this.rolesService.getAllRoles().subscribe(
-      data => {
+      data => {        
         this.roles = data
       }
     )
+  }
+
+  updateGrants(role:Role, datatype:string){
+    this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype].permission).subscribe(data=>{})
   }
 
 }

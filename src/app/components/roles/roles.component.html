@@ -4,7 +4,6 @@
   <div class="form-group">
     <input type="text" class="form-control w-50 d-inline mr-2">
     <div class="btn btn-primary d-inline"> Add </div>
-    <div class="btn btn-success d-inline float-right">Save</div>
   </div>
 
   <table class="table table-striped">
@@ -22,21 +21,22 @@
     <tr *ngFor="let role of roles;">
       <td>{{ role.role }}</td>
       <td>
-          <select class="custom-select custom-select-sm" >
-              <option [selected]="role.office==0" value="0">None</option>
-              <option [selected]="role.office==1" value="1">Read</option>
-              <option value="2">Write</option>
-          </select>
-          {{ role.grants.office }}
+        <app-permission-selector (change)="updateGrants(role, 'office')" [(grant)]="role.grants.office" ></app-permission-selector>
       </td>
-      <td>{{ role.grants.place }}</td>
-      <td>{{ role.grants.placerequest }}</td>
-      <td>{{ role.grants.user }}</td>
-      <td>{{ role.grants.role }}</td>
+      <td>
+        <app-permission-selector (change)="updateGrants(role, 'place')" [(grant)]="role.grants.place" ></app-permission-selector>
+      </td>
+      <td>
+          <app-permission-selector (change)="updateGrants(role, 'placerequest')" [(grant)]="role.grants.placerequest" ></app-permission-selector>
+      </td>
+      <td>
+          <app-permission-selector (change)="updateGrants(role, 'user')" [(grant)]="role.grants.user" ></app-permission-selector>
+      </td>
+      <td>
+          <app-permission-selector (change)="updateGrants(role, 'role')" [(grant)]="role.grants.role" ></app-permission-selector>
+      </td>
     </tr>
     </tbody>
   </table>
-
-  
 
 </div>

@@ -17,4 +17,8 @@ export class RolesService {
     return this.http.get<Role[]>(AppConstants.AUTHORIZATION_SERVICE_URL()+"roles/grants")
   }
 
+  grantPermissionToRole(role:string, datatype:string, permission:string):Observable<Object>{
+    return this.http.post(AppConstants.AUTHORIZATION_SERVICE_URL()+`roles/${role}/grants/datatypes/${datatype}/${permission}`,null)
+  }
+
 }

@@ -1,12 +1,14 @@
 export class Role{
     role:string
-    grants:Grant 
+    grants:Grant
 }
 
 export class Grant{
-    office:number
-    place:number
-    placerequest:number
-    user:number
-    role:number
+    office:PermissionWrapper
+    role:PermissionWrapper
+    user:PermissionWrapper
+    place:PermissionWrapper
+    placerequest:PermissionWrapper
 }
+
+export class PermissionWrapper {permission:number}
