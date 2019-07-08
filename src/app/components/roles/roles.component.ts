@@ -51,11 +51,21 @@ export class RolesComponent implements OnInit {
     )
   }
 
+  deleteRole(role:Role){
+    this.rolesService.deleteRole(role.role).subscribe(
+      ()=>{
+        AlertsComponent.display("success",`Role ${role.role} has been successfully deactivated`)
+        this.getAllRoles()
+      },
+      exception=>this.displayExceptionMessages(exception),
+    );
+  }
+
   displayExceptionMessages(exception){
         if(exception.status==0){
           AlertsComponent.display("danger",`Could not contact Authorization Server, please try again`)
           return;
         }
         AlertsComponent.display("danger",`${exception.error.error?exception.error.error:''} ${exception.error.message?exception.error.message:''}`)
-      }
+      }  
 }
