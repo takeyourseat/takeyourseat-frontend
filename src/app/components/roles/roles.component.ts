@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RolesService } from '../../services/roles.service';
 import { Role, Grant } from '../../model/Role';
 import { AlertsComponent } from '../alerts/alerts.component';
+import {DataTypesService} from '../../services/datatypes.service';
+import {DataType} from '../../model/DataType';
 
 @Component({
   selector: 'app-roles',
@@ -10,62 +12,80 @@ import { AlertsComponent } from '../alerts/alerts.component';
 })
 export class RolesComponent implements OnInit {
 
-  roles : Role[]
-  newRoleName:string;
+  roles: Role[];
+  dataTypes: DataType[];
+  newRoleName: string;
 
   constructor(
-    private rolesService : RolesService,
+    private rolesService: RolesService,
+    private dataTypeSerive: DataTypesService,
   ) { }
 
   ngOnInit() {
-    this.getAllRoles()
+    this.getAllDataTypes();
+    this.getAllRoles();
   }
 
-  getAllRoles(){
+  getAllRoles() {
     this.rolesService.getAllRoles().subscribe(
-      data => {        
-        this.roles = data
+      data => {
+        console.log(data)
+        this.roles = data;
       },
-      exception=>this.displayExceptionMessages(exception),
-    )
-  }
-
-  createRole(){
-    this.rolesService.createRole(this.newRoleName).subscribe(
-      data=> {
-        AlertsComponent.clearMessages()
-        AlertsComponent.display("success",`Role ${this.newRoleName} has been successfully created`,5000)
-        this.getAllRoles()
-      },
-      exception=>this.displayExceptionMessages(exception),
-    )
-  }
-
-  updateGrants(role:Role, datatype:string){
-    this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype].permission).subscribe(
-      data=>{
-        AlertsComponent.clearMessages()
-        AlertsComponent.display("success",`Permission level for Role <strong> ${role.role} </strong> on domain <strong>${datatype}</strong> has been successfully updated`,5000) 
-    },
-    exception=>this.displayExceptionMessages(exception),
-    )
-  }
-
-  deleteRole(role:Role){
-    this.rolesService.deleteRole(role.role).subscribe(
-      ()=>{
-        AlertsComponent.display("success",`Role ${role.role} has been successfully deactivated`)
-        this.getAllRoles()
-      },
-      exception=>this.displayExceptionMessages(exception),
+      exception => this.displayExceptionMessages(exception),
     );
   }
 
-  displayExceptionMessages(exception){
-        if(exception.status==0){
-          AlertsComponent.display("danger",`Could not contact Authorization Server, please try again`)
+  createRole() {
+    this.rolesService.createRole(this.newRoleName).subscribe(
+      data => {
+        AlertsComponent.clearMessages();
+        AlertsComponent.display('success', `Role ${this.newRoleName} has been successfully created`, 5000);
+        this.getAllRoles();
+      },
+      exception => this.displayExceptionMessages(exception),
+    );
+  }
+
+  updateGrants(role: Role, datatype: string) {
+    this.rolesService.grantPermissionToRole(role.role, datatype, role.grants[datatype.toLowerCase()].permission).subscribe(
+      data => {
+        AlertsComponent.clearMessages();
+        AlertsComponent.display('success', `Permission level for Role <strong> ${role.role} </strong> on domain
+                                                          <strong>${datatype.toLowerCase()}</strong> has been successfully updated`, 5000);
+    },
+    exception => this.displayExceptionMessages(exception),
+    );
+  }
+
+  deleteRole(role: Role) {
+    this.rolesService.deleteRole(role.role).subscribe(
+      () => {
+        AlertsComponent.display('success', `Role ${role.role} has been successfully deactivated`);
+        this.getAllRoles();
+      },
+      exception => this.displayExceptionMessages(exception),
+    );
+  }
+
+  displayExceptionMessages(exception) {
+        if (exception.status === 0) {
+          AlertsComponent.display('danger', `Could not contact Authorization Server, please try again`);
           return;
         }
-        AlertsComponent.display("danger",`${exception.error.error?exception.error.error:''} ${exception.error.message?exception.error.message:''}`)
-      }  
+        AlertsComponent.display('danger', `${exception.error.error ? exception.error.error : ''} ${exception.error.message ? exception.error.message : ''}`);
+      }
+
+
+  getAllDataTypes() {
+    this.dataTypeSerive.getAllDatatypes().subscribe(
+      data => {
+        console.log(data)
+        this.dataTypes = data;
+      },
+      exception => {
+        this.displayExceptionMessages(exception);
+      }
+    );
+  }
 }

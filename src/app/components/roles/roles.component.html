@@ -9,36 +9,23 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th scope="col">Role</th>
-      <th scope="col">Office</th>
-      <th scope="col">Place</th>
-      <th scope="col">PlaceRequest</th>
-      <th scope="col">User</th>
-      <th scope="col">Role</th>
+      <th>Role</th>
+      <th *ngFor="let dataType of dataTypes" scope="col">{{dataType.name | titlecase}}</th>
+
       <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let role of roles;">
+
       <td>{{ role.role | titlecase }}</td>
-      <td>
-        <app-permission-selector (change)="updateGrants(role, 'office')" [(grant)]="role.grants.office" ></app-permission-selector>
+
+      <td *ngFor="let datatype of dataTypes">
+        <app-permission-selector (change)="updateGrants(role, datatype.name)" [(grant)]="role.grants[datatype.name.toLowerCase()]" ></app-permission-selector>
       </td>
-      <td>
-        <app-permission-selector (change)="updateGrants(role, 'place')" [(grant)]="role.grants.place" ></app-permission-selector>
-      </td>
-      <td>
-          <app-permission-selector (change)="updateGrants(role, 'placerequest')" [(grant)]="role.grants.placerequest" ></app-permission-selector>
-      </td>
-      <td>
-          <app-permission-selector (change)="updateGrants(role, 'user')" [(grant)]="role.grants.user" ></app-permission-selector>
-      </td>
-      <td>
-          <app-permission-selector (change)="updateGrants(role, 'role')" [(grant)]="role.grants.role" ></app-permission-selector>
-      </td>
-      <td>
-          <div class="btn btn-secondary" (click)="deleteRole(role)" > &times; </div>
-      </td>
+
+      <td> <div class="btn btn-secondary" (click)="deleteRole(role)" > &times; </div> </td>
+
     </tr>
     </tbody>
   </table>
