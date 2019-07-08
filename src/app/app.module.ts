@@ -60,6 +60,6 @@ import { PermissionSelectorComponent } from './components/permission-selector/pe
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
+  entryComponents: [PlacerequestformComponent]
 })
 export class AppModule { }

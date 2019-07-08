@@ -1,23 +1,16 @@
-<ng-template #content let-modal>
+<div >
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-      {{_selectedPlace && _selectedPlace.isAvailable ? 'Place Request' : 'Place Info'}}
+    {{title}}
     </h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+    <button type="button" class="close" aria-label="Close"  (click)="dismiss()" >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <app-placeform [(selectedPlace)]="_selectedPlace" *ngIf="_selectedPlace && !_selectedPlace.isAvailable">
-    </app-placeform>
-    <app-placerequestform [(selectedPlace)]="_selectedPlace" *ngIf="_selectedPlace && _selectedPlace.isAvailable">
-    </app-placerequestform>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="createPlaceRequest()"
-            *ngIf="_selectedPlace && _selectedPlace.isAvailable">
-      Request Place
-    </button>
-  </div>
-</ng-template>
+
+  <ng-content>
+
+  </ng-content>
+
+
+</div>

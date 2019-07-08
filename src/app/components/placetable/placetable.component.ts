@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Office } from 'src/app/model/Office';
 import { Place } from 'src/app/model/Place';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-placetable',
@@ -24,7 +25,9 @@ export class PlacetableComponent implements OnInit {
     this._selectedOffice = selectedOffice;
   }
 
-  constructor() {
+  constructor(
+    private modal: NgbModal,
+  ) {
   }
 
   ngOnInit() {
@@ -48,5 +51,10 @@ export class PlacetableComponent implements OnInit {
 
   selectPlace(place: Place) {
     this.selectedPlace = place;
+  }
+
+  open(place: any) {
+    console.log("click")
+    const modalRef = this.modal.open(place);
   }
 }

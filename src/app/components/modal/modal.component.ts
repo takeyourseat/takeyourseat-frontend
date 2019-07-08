@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, ViewRef} from '@angular/core';
 import { Place } from 'src/app/model/Place';
 import { PlacerequestService } from '../../services/placerequest.service';
 import { PlaceRequests } from '../../model/PlaceRequests';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from '../login/login.component';
+import {PlaceformComponent} from '../placeform/placeform.component';
+import {PlacerequestformComponent} from '../placerequestform/placerequestform.component';
 
 @Component({
   selector: 'app-modal',
@@ -10,32 +13,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  private _selectedPlace: Place;
-  private placeRequest: PlaceRequests;
 
-  @Input()
-  set selectedPlace(place: Place) {
-    this._selectedPlace = place;
-  }
+  @Input() title;
+  @Input() dismiss;
 
-  constructor(
-    private modal: NgbModal,
-    private placeRequestService: PlacerequestService
-  ) {
+  constructor(){
   }
 
   ngOnInit() {
   }
 
-  createPlaceRequest() {
-    this.placeRequestService.createPlaceRequest(this._selectedPlace.id).subscribe(
-      response => {
-        this.placeRequest = response;
-      }
-    );
-  }
 
-  open() {
-    const modalRef = this.modal.open(ModalComponent);
-  }
+
 }
