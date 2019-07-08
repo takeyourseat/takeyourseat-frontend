@@ -29,7 +29,6 @@ export class RolesComponent implements OnInit {
   getAllRoles() {
     this.rolesService.getAllRoles().subscribe(
       data => {
-        console.log(data)
         this.roles = data;
       },
       exception => this.displayExceptionMessages(exception),
@@ -73,6 +72,15 @@ export class RolesComponent implements OnInit {
           AlertsComponent.display('danger', `Could not contact Authorization Server, please try again`);
           return;
         }
+        if (exception.status === 403) {
+          AlertsComponent.clearMessages();
+          AlertsComponent.display('danger', 'Error 403: You are not authorized to execute this request')
+          return;
+        }if (exception.status === 401) {
+          AlertsComponent.clearMessages();
+          AlertsComponent.display('danger', 'Error 401: You are not authenticated')
+          return;
+    }
         AlertsComponent.display('danger', `${exception.error.error ? exception.error.error : ''} ${exception.error.message ? exception.error.message : ''}`);
       }
 
@@ -80,7 +88,6 @@ export class RolesComponent implements OnInit {
   getAllDataTypes() {
     this.dataTypeSerive.getAllDatatypes().subscribe(
       data => {
-        console.log(data)
         this.dataTypes = data;
       },
       exception => {
