@@ -6,6 +6,7 @@ export class Place {
   coordinateY: number;
   office: Office;
   username: string;
+  isAvailable: boolean;
 
   constructor(id: number, coordinateX: number, coordinateY: number, office: Office, username: string) {
     this.id = id;

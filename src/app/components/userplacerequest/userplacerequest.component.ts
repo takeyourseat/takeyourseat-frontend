@@ -14,8 +14,8 @@ import {AlertsComponent} from '../alerts/alerts.component';
 })
 export class UserplacerequestComponent implements OnInit {
 
-  private placeRequests: PlaceRequests[];
-  private isDataLoading: boolean = true;
+  public placeRequests: PlaceRequests[];
+  public isDataLoading: boolean = true;
 
   constructor(
     private placeRequestService: PlacerequestService,

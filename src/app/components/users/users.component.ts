@@ -28,7 +28,8 @@ searchArgument: string;
     username: '',
     jobTitle: '',
     manager: '',
-    role: ''
+    role: '',
+    password: ''
   };
 
 
@@ -102,6 +103,7 @@ export interface UserViewModel {
   jobTitle: string;
   manager: string;
   role: string;
+  password: string;
 }
 
 

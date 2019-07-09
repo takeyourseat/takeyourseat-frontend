@@ -11,9 +11,9 @@ import {AuthenticationService} from '../../services/authentication.service';
 })
 export class RequestedplaceComponent implements OnInit {
 
-  private placeRequests: PlaceRequests[];
-  private placeRequest: PlaceRequests;
-  private isDataLoading: boolean = true;
+  public placeRequests: PlaceRequests[];
+  public placeRequest: PlaceRequests;
+  public isDataLoading: boolean = true;
 
   constructor(
     private userService: UserService,

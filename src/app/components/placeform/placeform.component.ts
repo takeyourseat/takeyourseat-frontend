@@ -9,8 +9,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./placeform.component.css']
 })
 export class PlaceformComponent implements OnChanges {
-  private _selectedPlace: Place;
-  private user: User;
+  public _selectedPlace: Place;
+  public user: User;
 
   @Input()
   set selectedPlace(place: Place) {

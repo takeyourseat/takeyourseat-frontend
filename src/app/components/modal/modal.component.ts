@@ -11,8 +11,8 @@ import {AlertsComponent} from '../alerts/alerts.component';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  private _selectedPlace: Place;
-  private placeRequest: PlaceRequests;
+  public _selectedPlace: Place;
+  public placeRequest: PlaceRequests;
 
   @Input()
   set selectedPlace(place: Place) {

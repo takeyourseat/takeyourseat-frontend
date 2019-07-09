@@ -8,7 +8,7 @@ import {Place} from '../../model/Place';
 })
 export class PlacerequestformComponent implements OnInit {
 
-  private _selectedPlace: Place;
+  public _selectedPlace: Place;
 
   @Input()
   set selectedPlace(place: Place) {

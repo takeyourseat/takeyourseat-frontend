@@ -8,10 +8,10 @@ import { Place } from 'src/app/model/Place';
   styleUrls: ['./placetable.component.css'],
 })
 export class PlacetableComponent implements OnInit {
-  private schema: any[][];
-  private _places: Place[] = [];
-  private _selectedOffice: Office;
-  private selectedPlace: Place;
+  public schema: any[][];
+  public _places: Place[] = [];
+  public _selectedOffice: Office;
+  public selectedPlace: Place;
 
   @Input()
   set places(places: Place[]) {

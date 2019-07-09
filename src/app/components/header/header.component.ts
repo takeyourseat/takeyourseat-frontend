@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private authentificationService: AuthenticationService
+    public authentificationService: AuthenticationService
   ) { }
   ngOnInit() {
     if(this.authentificationService.isUserLoggedIn())
