@@ -24,6 +24,7 @@ import {TabModule} from "angular-tabs-component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RolesComponent } from './components/roles/roles.component';
 import { PermissionSelectorComponent } from './components/permission-selector/permission-selector.component';
+import { MoveuserComponent } from './components/moveuser/moveuser.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PermissionSelectorComponent } from './components/permission-selector/pe
     UsersComponent,
     RolesComponent,
     PermissionSelectorComponent,
+    MoveuserComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,6 @@ import { PermissionSelectorComponent } from './components/permission-selector/pe
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-
     AppRoutingModule,
     TabModule,
     ReactiveFormsModule,

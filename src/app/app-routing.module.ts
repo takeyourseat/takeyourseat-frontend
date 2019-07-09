@@ -9,6 +9,7 @@ import { UserIsAnnoymousService } from './services/guards/user-is-annoymous.serv
 import { LogoutComponent } from './components/logout/logout.component';
 import { UsersComponent } from './components/users/users.component';
 import { RolesComponent } from './components/roles/roles.component';
+import { MoveuserComponent } from './components/moveuser/moveuser.component';
 
 const routes: Routes = [
   {path: 'places', component: AllplacesComponent, canActivate:[UserLoggedInGuardService]},
@@ -19,6 +20,7 @@ const routes: Routes = [
 
   {path:'roles', component: RolesComponent, canActivate: [UserLoggedInGuardService]},
 
+  {path:'moveuser',component:MoveuserComponent},
 
   {path:'login', component:LoginComponent, canActivate:[UserIsAnnoymousService]},
   {path:'logout', component: LogoutComponent},
