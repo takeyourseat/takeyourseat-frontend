@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Move User</h2>
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <select class="form-control" id="username" required>
+        <option *ngFor="let user of users">{{user.username}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <select class="form-control" id="firstname" disabled>
+        <option *ngFor="let user of users">{{user.fName}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <select class="form-control" id="lastname" disabled>
+        <option [ngValue]="user" *ngFor="let user of users">{{user.lName}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="office">Office Number</label>
+      <select class="form-control" id="office">
+        <option *ngFor="let office of offices">{{office.number}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="coordinatex">Coordinate X</label>
+      <select class="form-control" id="coordinatex" required>
+        <option></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="coordinatey">Coordinate Y</label>
+      <select class="form-control" id="coordinatey" required>
+        <option></option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
