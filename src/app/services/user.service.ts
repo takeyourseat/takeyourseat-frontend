@@ -27,6 +27,10 @@ export class UserService {
     return this.http.get<User[]>(apiURL + `users/?managerId=${id}`).pipe(catchError(this.handleError));
   }
 
+  getUsersByManagerUsername(username: string): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:8085/' + `users?manager=${username}`);
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
