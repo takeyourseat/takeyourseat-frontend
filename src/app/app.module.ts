@@ -24,6 +24,8 @@ import {TabModule} from "angular-tabs-component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RolesComponent } from './components/roles/roles.component';
 import { PermissionSelectorComponent } from './components/permission-selector/permission-selector.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { PermissionSelectorComponent } from './components/permission-selector/pe
     AppRoutingModule,
     TabModule,
     ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
