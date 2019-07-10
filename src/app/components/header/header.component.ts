@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  notificationsOpened = false;
 
   constructor(
     public authentificationService: AuthenticationService
@@ -16,4 +17,8 @@ export class HeaderComponent implements OnInit {
       this.authentificationService.loadLoggedInUser()
   }
 
+  toggleNotificationCenter() {
+    console.log(this.notificationsOpened)
+    this.notificationsOpened = !this.notificationsOpened;
+  }
 }

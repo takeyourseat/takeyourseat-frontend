@@ -26,6 +26,7 @@ import {RolesComponent} from './components/roles/roles.component';
 import {PermissionSelectorComponent} from './components/permission-selector/permission-selector.component';
 import {ServiceWorkerModule, SwPush} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {SidebarModule} from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {environment} from '../environments/environment';
     TabModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.notifications || environment.production}),
+    SidebarModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},

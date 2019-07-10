@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" *ngIf="authentificationService.isUserLoggedIn()">
+<nav class="navbar navbar-expand" *ngIf="authentificationService.isUserLoggedIn()">
   <a class="navbar-brand" routerLink="/">Place Management</a>
   <div class="navbar-collapse collapse" id="navbarNav">
     <ul class="navbar-nav">
@@ -20,14 +20,26 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item nav-item-right">
-        <a routerLink="/" class="nav-link"> {{authentificationService.loggedInUser?.fName}} {{authentificationService.loggedInUser?.lName}}, </a>
-      </li>
-      <li class="nav-item nav-item-right">
-        <a routerLink="logout" routerlinkActive="active" class="nav-link">Log out</a>
-      </li>
-    </ul>
-
   </div>
+
+  <div>
+    <img (click)="toggleNotificationCenter()" class="" width="20px" src="assets/icons/notification-icon.png" alt="notifications">
+    <sup class="font-weight-bold" style="color: #f44242;">99+</sup>
+  </div>
+
+
+  <div ngbDropdown placement="bottom-right">
+    <a ngbDropdownToggle class="nav-link" routerLink="" >{{authentificationService.loggedInUser?.fName}} {{authentificationService.loggedInUser?.lName}}</a>
+    <div ngbDropdownMenu style="margin-left: -4rem">
+      <a ngbDropdownItem routerLink="logout" >Log out</a>
+    </div>
+  </div>
+
 </nav>
+
+
+<ng-sidebar-container class="float-right w-25" style="height: 500px">
+  <ng-sidebar [(opened)]="notificationsOpened"  position="right" >
+  <p>text</p>
+  </ng-sidebar>
+</ng-sidebar-container>
