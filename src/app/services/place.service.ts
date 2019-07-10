@@ -19,14 +19,6 @@ export class PlaceService {
     return this.http.get<Place[]>(apiURL + `offices/${officenum}/places`).pipe(catchError(this.handleError));
   }
 
-  getPlacesByOfficeId(officeId: number): Observable<Place[]> {
-    return this.http.get<Place[]>(apiURL + `offices/${officeId}/places`).pipe(catchError(this.handleError));
-  }
-
-  getPlaceById(id: number) {
-    return this.http.get<Place>(apiURL + `places/${id}`);
-  }
-
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
