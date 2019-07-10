@@ -8,8 +8,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "takeyourseatbuild": "ng build --prod",
-    "takeyourseatprod": "npm run takeyourseatbuild && cd dist/takeyourseat && http-server -c-1"
+    "takeyourseatbuilddev": "ng build --configuration=develop",
+    "takeyourseatbuildprod": "ng build --configuration=production",
+    "takeyourseatprod": "npm run takeyourseatbuild && cd dist/takeyourseat && http-server -c-1",
+    "takeyourseatdev": "npm run takeyourseatbuilddev && cd dist/takeyourseat && http-server -c-1"
+
   },
   "private": true,
   "dependencies": {
