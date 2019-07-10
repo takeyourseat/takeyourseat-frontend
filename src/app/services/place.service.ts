@@ -19,6 +19,10 @@ export class PlaceService {
     return this.http.get<Place[]>(apiURL + `offices/${officenum}/places`).pipe(catchError(this.handleError));
   }
 
+  moveUserPlace(officeNumber: number, coordinateX: number, coordinateY: number, place: Place): Observable<Place> {
+    return this.http.put<Place>(apiURL + `places?office=${officeNumber}&coordinateX=${coordinateX}&coordinateY=${coordinateY}`, {place});
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
