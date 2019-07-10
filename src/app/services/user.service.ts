@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {apiURL} from '../constants';
+import {PLACE_MANAGEMENT_API, USER_MANAGEMENT_API} from '../constants';
 import {User} from '../model/User';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -16,19 +16,19 @@ export class UserService {
   }
 
   getUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8085/' + `users/${username}`).pipe(catchError(this.handleError));
+    return this.http.get<User>(USER_MANAGEMENT_API + `users/${username}`).pipe(catchError(this.handleError));
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(apiURL + `users`).pipe(catchError(this.handleError));
+    return this.http.get<User[]>(PLACE_MANAGEMENT_API + `users`).pipe(catchError(this.handleError));
   }
 
   getUsersByManagerId(id: number): Observable<User[]> {
-    return this.http.get<User[]>(apiURL + `users/?managerId=${id}`).pipe(catchError(this.handleError));
+    return this.http.get<User[]>(PLACE_MANAGEMENT_API + `users/?managerId=${id}`).pipe(catchError(this.handleError));
   }
 
   getUsersByManagerUsername(username: string): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:8085/' + `users?manager=${username}`);
+    return this.http.get<User[]>(USER_MANAGEMENT_API + `users?manager=${username}`);
   }
 
   handleError(error) {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {apiURL} from '../constants';
+import {PLACE_MANAGEMENT_API} from '../constants';
 import {PlaceRequests} from '../model/PlaceRequests';
 
 @Injectable({
@@ -12,22 +12,22 @@ export class PlacerequestService {
   }
 
   getPlaceRequestsByManager(reviewer: string) {
-    return this.http.get<PlaceRequests[]>(apiURL + `requests?reviewer=${reviewer}`);
+    return this.http.get<PlaceRequests[]>(PLACE_MANAGEMENT_API + `requests?reviewer=${reviewer}`);
   }
 
   declinePlaceRequest(id: number) {
-    return this.http.put<PlaceRequests>(apiURL + `requests/${id}`, {});
+    return this.http.put<PlaceRequests>(PLACE_MANAGEMENT_API + `requests/${id}`, {});
   }
 
   acceptPlaceRequest(id: number) {
-    return this.http.patch<PlaceRequests>(apiURL + `requests/${id}`, {});
+    return this.http.patch<PlaceRequests>(PLACE_MANAGEMENT_API + `requests/${id}`, {});
   }
 
   createPlaceRequest(placeId: number) {
-    return this.http.post<PlaceRequests>(apiURL + `requests/${placeId}`, {});
+    return this.http.post<PlaceRequests>(PLACE_MANAGEMENT_API + `requests/${placeId}`, {});
   }
 
   getPlaceRequestsByUsername(username: string) {
-    return this.http.get <PlaceRequests[]>(apiURL + `requests?user=${username}`);
+    return this.http.get <PlaceRequests[]>(PLACE_MANAGEMENT_API + `requests?user=${username}`);
   }
 }
