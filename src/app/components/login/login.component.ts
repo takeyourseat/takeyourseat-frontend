@@ -13,7 +13,8 @@ import {PlacerequestService} from '../../services/placerequest.service';
 export class LoginComponent implements OnInit {
   public loginUsername;
   public loginPassword;
-  readonly VAPID_PUBLIC_KEY = 'BLBx-hf2WrL2qEa0qKb-aCJbcxEvyn62GDTyyP9KTS5K7ZL0K7TfmOKSPqp8vQF0DaG8hpSBknz_x3qf5F4iEFo';
+  readonly key = 'BIo4B1bsWsS3fDQZJjFo3k_M9C5sMm929H5EJMbqcYicjCiseaYeCDsE6dIB5NNw4u6rlW8YUWhs-evYAwa2mOM';
+  readonly privateKey = 'dw1-Fz9_bD1aX9OAZ8uRt8c5p-CNNczirkGBiMYTUVM';
 
   constructor(private auth: AuthenticationService,
               private router: Router,
@@ -24,9 +25,11 @@ export class LoginComponent implements OnInit {
   subscribeToNotifications() {
 
     this.swPush.requestSubscription({
-      serverPublicKey: this.VAPID_PUBLIC_KEY
+      serverPublicKey: this.key
     })
-      .then(sub => this.placerequestService.getPlaceRequestsByUsername('csava').subscribe())
+      .then(sub => {
+        console.log(sub.toJSON());
+      })
       .catch(err => console.error('Could not subscribe to notifications', err));
   }
 
