@@ -6,6 +6,7 @@ import {Office} from '../../model/Office';
 import {OfficeService} from '../../services/office.service';
 import {PlaceService} from '../../services/place.service';
 import {Place} from '../../model/Place';
+import {AlertsComponent} from '../alerts/alerts.component';
 
 @Component({
   selector: 'app-moveuser',
@@ -17,9 +18,14 @@ export class MoveuserComponent implements OnInit {
   users: User[] = [];
   offices: Office[] = [];
   places: Place[];
-  newPlace: Place;
   selectedUser: User;
   selectedOffice: Place[];
+  officeNumber: number;
+  coordinateX: number;
+  coordinateY: number;
+  username: string;
+  usernameSelect: any;
+  selectPlace: any;
 
   constructor(
     private userService: UserService,
@@ -31,6 +37,7 @@ export class MoveuserComponent implements OnInit {
   ngOnInit() {
     this.getUsersByManagerUsername(this.authenticationService.getUserName());
     this.getOffices();
+    console.log(this.officeNumber);
   }
 
   getUsersByManagerUsername(user: string) {
@@ -53,16 +60,39 @@ export class MoveuserComponent implements OnInit {
     this.placeService.getPlacesByOfficeNumber(event.target.value).subscribe(
       response => {
         this.selectedOffice = response;
-        console.log(this.selectedOffice);
       }
     );
   }
 
-  getUserByUsername(event: any) {
-    this.userService.getUserByUsername(event.target.value).subscribe(
+  getUserByUsername() {
+    this.userService.getUserByUsername(this.usernameSelect).subscribe(
       response => {
         this.selectedUser = response;
       }
     );
   }
+
+  moveUser() {
+    this.placeService.moveUserPlace(this.selectPlace.office.number, this.selectPlace.coordinateX, this.selectPlace.coordinateY, this.usernameSelect).subscribe(
+      response => {
+        console.log('Changes made successfully');
+        AlertsComponent.display('success', `User ${this.usernameSelect} moved successfully`, 5000);
+      }, error => {
+        this.showError(error);
+        console.log('Changes made unsuccessfully');
+      }
+    );
+  }
+
+  showError(message) {
+    if (message.status === 404) {
+      AlertsComponent.display('danger', 'Place can\'t be found', 5000);
+    }
+    if (message.status === 409) {
+      AlertsComponent.display('danger', 'New place is busy', 5000);
+      return;
+    }
+  }
 }
+
+

@@ -1,42 +1,45 @@
 <div class="container">
   <h2>Move User</h2>
-  <form>
+  <form (ngSubmit)="moveUser()">
     <div class="form-group">
-      <select (change)="getUserByUsername($event)" class="form-control" id="username">
-        <option value="Select Username">Select username</option>
-        <option *ngFor="let user of users">{{user.username}}</option>
+      <label for="username">Username</label>
+      <select [(ngModel)]="usernameSelect" class="form-control" id="username" name="username"
+              (change)="getUserByUsername()">
+        <option *ngFor="let user of users" [ngValue]="user.username">{{user.username}}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="firstname">First Name</label>
-      <select class="form-control" id="firstname" disabled>
+      <select class="form-control" id="firstname" name="firstname" disabled>
         <option>{{selectedUser?.fName}}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="lastname">Last Name</label>
-      <select class="form-control" id="lastname" disabled>
+      <select class="form-control" id="lastname" name="lastname" disabled>
         <option>{{selectedUser?.lName}}</option>
       </select>
     </div>
 
     <div class="form-group">
-      <select class="form-control" id="office" (change)="getPlacesByOfficeNumber($event)">
-        <option>Select Office</option>
-        <option *ngFor="let office of offices">{{office.number}}</option>
+      <label for="officeNumber">Office</label>
+      <select class="form-control" id="officeNumber" name="officeNumber"
+              (change)="getPlacesByOfficeNumber($event)">
+        <option></option>
+        <option *ngFor="let office of offices" [ngValue]="office.number">{{office.number}}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="place">Place</label>
-      <select class="form-control" id="place">
-        <option *ngFor="let place of selectedOffice">CoordinateX {{place.coordinateX}} and
+      <select [(ngModel)]="selectPlace" class="form-control" id="place" name="place">
+        <option *ngFor="let place of selectedOffice" [ngValue]="place">CoordinateX {{place.coordinateX}} and
           CoordinateY {{place.coordinateY}}</option>
       </select>
     </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success">Move User</button>
   </form>
 </div>
