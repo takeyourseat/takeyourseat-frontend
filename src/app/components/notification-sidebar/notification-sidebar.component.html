@@ -1,0 +1,30 @@
+<div style="width: 25vw">
+
+  <ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle>Places
+        <span class="notificationsNumber" style="color: #f44242;">5</span>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <ul class="list-group list-group-flush">
+          <li class="notification" *ngFor="let notification of notifications">
+            <img  src="{{notification.notification.image}}">
+            <span class="lead">{{notification.notification.title}} </span>
+            <p>{{notification.notification.body}}</p>
+          </li>
+        </ul>
+
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>Account
+        <span class="notificationsNumber" style="color: #f44242;">10</span>
+      </ng-template>
+      <ng-template ngbTabContent>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet et nihil nostrum omnis quam ratione similique!
+        Accusantium aliquam amet, debitis dolores eaque illum, magni minus nesciunt obcaecati possimus quod voluptatem?
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+
+</div>

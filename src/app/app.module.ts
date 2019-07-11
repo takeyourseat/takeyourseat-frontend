@@ -27,6 +27,7 @@ import {PermissionSelectorComponent} from './components/permission-selector/perm
 import {ServiceWorkerModule, SwPush} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {SidebarModule} from 'ng-sidebar';
+import { NotificationSidebarComponent } from './components/notification-sidebar/notification-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {SidebarModule} from 'ng-sidebar';
     UsersComponent,
     RolesComponent,
     PermissionSelectorComponent,
+    NotificationSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,17 +69,4 @@ import {SidebarModule} from 'ng-sidebar';
   bootstrap: [AppComponent],
 
 })
-export class AppModule {
-  constructor(push: SwPush) {
-    push.messages.subscribe(msg => {
-      console.log(msg);
-    })
-
-    const key = 'BIo4B1bsWsS3fDQZJjFo3k_M9C5sMm929H5EJMbqcYicjCiseaYeCDsE6dIB5NNw4u6rlW8YUWhs-evYAwa2mOM';
-    const privateKey = 'dw1-Fz9_bD1aX9OAZ8uRt8c5p-CNNczirkGBiMYTUVM';
-    push.requestSubscription({serverPublicKey: key})
-      .then(pushSubscription => {
-        console.log(pushSubscription.toJSON());
-      });
-  }
-}
+export class AppModule {}

@@ -8,6 +8,10 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'takeyourseat';
+ isNotificationSidebarOpen = false;
 
-
+  toggleNotificationSidebar($event: boolean) {
+    console.log($event)
+    this.isNotificationSidebarOpen = $event;
+  }
 }

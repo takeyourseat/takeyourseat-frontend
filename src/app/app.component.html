@@ -1,9 +1,18 @@
-<div>
-    <app-header></app-header>
-</div>
+<ng-sidebar-container style="height: 100vh">
 
-<div class="container mt-2">
+  <ng-sidebar closeOnClickOutside="true" mode="push" [(opened)]="isNotificationSidebarOpen" position="right">
+    <app-notification-sidebar></app-notification-sidebar>
+  </ng-sidebar>
+
+  <div ng-sidebar-content>
+    <app-header (toggleNotificationSidebar)="toggleNotificationSidebar($event)"></app-header>
     <app-alerts></app-alerts>
-</div>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+    <div style="min-height: 90vh">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </div>
+
+</ng-sidebar-container>
+
+

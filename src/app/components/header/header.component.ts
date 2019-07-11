@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -9,16 +9,19 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderComponent implements OnInit {
   notificationsOpened = false;
 
+  @Output() toggleNotificationSidebar: EventEmitter<boolean> = new EventEmitter();
+
   constructor(
     public authentificationService: AuthenticationService
   ) { }
   ngOnInit() {
-    if(this.authentificationService.isUserLoggedIn())
-      this.authentificationService.loadLoggedInUser()
+    if (this.authentificationService.isUserLoggedIn()) {
+      this.authentificationService.loadLoggedInUser();
+    }
   }
 
   toggleNotificationCenter() {
-    console.log(this.notificationsOpened)
     this.notificationsOpened = !this.notificationsOpened;
+    this.toggleNotificationSidebar.emit(this.notificationsOpened);
   }
 }
