@@ -10,6 +10,7 @@ import {catchError} from 'rxjs/operators';
 })
 export class PlaceService {
 
+
   constructor(
     private http: HttpClient
   ) {
@@ -21,9 +22,6 @@ export class PlaceService {
 
   moveUserPlace(officeNumber: number, coordinateX: number, coordinateY: number, place): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    place = {
-      username: 'administrator'
-    };
     return this.http
       .put(PLACE_MANAGEMENT_API + `places?office=${officeNumber}&coordinateX=${coordinateX}&coordinateY=${coordinateY}`,
         JSON.stringify(place),

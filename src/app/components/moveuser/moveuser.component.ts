@@ -21,11 +21,9 @@ export class MoveuserComponent implements OnInit {
   selectedUser: User;
   selectedOffice: Place[];
   officeNumber: number;
-  coordinateX: number;
-  coordinateY: number;
   username: string;
-  usernameSelect: any;
-  selectPlace: any;
+  usernameSelect: string;
+  selectPlace: Place;
 
   constructor(
     private userService: UserService,
@@ -73,13 +71,15 @@ export class MoveuserComponent implements OnInit {
   }
 
   moveUser() {
-    this.placeService.moveUserPlace(this.selectPlace.office.number, this.selectPlace.coordinateX, this.selectPlace.coordinateY, this.usernameSelect).subscribe(
+    this.placeService.moveUserPlace(
+      this.selectPlace.office.number,
+      this.selectPlace.coordinateX,
+      this.selectPlace.coordinateY,
+      {username: this.usernameSelect}).subscribe(
       response => {
-        console.log('Changes made successfully');
         AlertsComponent.display('success', `User ${this.usernameSelect} moved successfully`, 5000);
       }, error => {
         this.showError(error);
-        console.log('Changes made unsuccessfully');
       }
     );
   }
