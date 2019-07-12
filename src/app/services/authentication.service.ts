@@ -3,14 +3,14 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AppConstants} from '../AppConstants';
 import { UserService } from './user.service';
-import { OneUser } from '../components/users/model/users';
+import { UserModel } from '../components/users/model/users';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  loggedInUser: OneUser;
+  loggedInUser: UserModel;
 
   constructor(
     private router: Router,
@@ -68,8 +68,8 @@ export class AuthenticationService {
 
   }
 
-  getLoggedInUser():Observable<OneUser>{
-    return this.http.get<OneUser>(AppConstants.USER_MANAGEMENT_URL()+'users/'+this.getUserName())
+  getLoggedInUser():Observable<UserModel>{
+    return this.http.get<UserModel>(AppConstants.USER_MANAGEMENT_URL()+'users/'+this.getUserName())
   }
 
   loadLoggedInUser(){

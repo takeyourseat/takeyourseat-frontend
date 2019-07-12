@@ -43,15 +43,12 @@ import { PermissionSelectorComponent } from './components/permission-selector/pe
     UserplacerequestComponent,
     FooterComponent,
     LogoutComponent,
-<<<<<<< HEAD
     ShowAllUsersComponent,
     UserCreatorComponent,
     SearhUsersComponent,
-=======
-    UsersComponent,
     RolesComponent,
     PermissionSelectorComponent,
->>>>>>> b19c5866ee8bdcce6d2b152bb1968349024f5df7
+
   ],
   imports: [
     BrowserModule,
