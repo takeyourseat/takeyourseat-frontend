@@ -8,9 +8,11 @@
       <ng-template ngbTabContent>
         <ul class="list-group list-group-flush">
           <li class="notification" *ngFor="let notification of notifications">
+            <div class="close notification-close" aria-hidden="true" (click)="closeNotification(notification)"> &times; </div>
             <img  src="{{notification.notification.image}}">
             <span class="lead">{{notification.notification.title}} </span>
             <p>{{notification.notification.body}}</p>
+
           </li>
         </ul>
 

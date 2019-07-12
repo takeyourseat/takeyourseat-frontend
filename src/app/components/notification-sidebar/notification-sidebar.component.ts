@@ -34,5 +34,7 @@ export class NotificationSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+  closeNotification(notification: PushNotification) {
+    this.notifications.splice(this.notifications.indexOf(notification), 1);
   }
 }

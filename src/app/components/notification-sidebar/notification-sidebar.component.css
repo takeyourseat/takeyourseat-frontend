@@ -23,3 +23,10 @@ li{
 .notification img{
   max-height: 3rem;
 }
+
+.notification-close{
+  position: relative;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
