@@ -7,14 +7,19 @@ import {UserplacerequestComponent} from './components/userplacerequest/userplace
 import { UserLoggedInGuardService } from './services/guards/route-guard.service';
 import { UserIsAnnoymousService } from './services/guards/user-is-annoymous.service';
 import { LogoutComponent } from './components/logout/logout.component';
-import { UsersComponent } from './components/users/users.component';
+import {ShowAllUsersComponent} from './components/users/show-all-users/show-all-users.component';
+import {UserCreatorComponent} from './components/users/user-creator/user-creator.component';
+import {SearhUsersComponent} from './components/users/searh-users/searh-users.component';
 
 const routes: Routes = [
   {path: 'places', component: AllplacesComponent, canActivate:[UserLoggedInGuardService]},
   {path: 'requestedplace', component: RequestedplaceComponent, canActivate:[UserLoggedInGuardService]},
   {path: 'userplacerequest', component: UserplacerequestComponent, canActivate:[UserLoggedInGuardService]},
 
-  {path:'users', component: UsersComponent, canActivate: [UserLoggedInGuardService]},
+  {path:'showallusers', component: ShowAllUsersComponent, canActivate: [UserLoggedInGuardService]},
+  {path:'usercreator', component: UserCreatorComponent, canActivate: [UserLoggedInGuardService]},
+  {path:'searchusers', component: SearhUsersComponent, canActivate: [UserLoggedInGuardService]},
+
 
   {path:'login', component:LoginComponent, canActivate:[UserIsAnnoymousService]},
   {path:'logout', component: LogoutComponent},

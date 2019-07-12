@@ -18,8 +18,10 @@ import { UserplacerequestComponent } from './components/userplacerequest/userpla
 import { FooterComponent } from './components/footer/footer.component';
 import { InterceptorService } from './services/http/HttpTokenInterceptor.service';
 import { LogoutComponent } from './components/logout/logout.component';
-import { UsersComponent } from './components/users/users.component';
-import {TabModule} from "angular-tabs-component";
+import {TabModule} from 'angular-tabs-component';
+import { ShowAllUsersComponent } from './components/users/show-all-users/show-all-users.component';
+import { UserCreatorComponent } from './components/users/user-creator/user-creator.component';
+import { SearhUsersComponent } from './components/users/searh-users/searh-users.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {TabModule} from "angular-tabs-component";
     UserplacerequestComponent,
     FooterComponent,
     LogoutComponent,
-    UsersComponent,
+    ShowAllUsersComponent,
+    UserCreatorComponent,
+    SearhUsersComponent,
   ],
   imports: [
     BrowserModule,
