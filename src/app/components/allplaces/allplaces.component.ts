@@ -15,7 +15,7 @@ export class AllplacesComponent implements OnInit {
 
   offices: Office[];
   places: Place[];
-  floors: [];
+  floors: number[];
   selectedOffice: Office;
   selectedPlace: Place;
 
@@ -33,6 +33,8 @@ export class AllplacesComponent implements OnInit {
     this.officeService.getFloors().subscribe(
       response => {
         this.floors = response;
+        if(this.floors.length != 0)
+          this.loadOffices(this.floors[0])
       }
     );
   }
@@ -41,6 +43,8 @@ export class AllplacesComponent implements OnInit {
     this.officeService.getOfficesByFloor(id).subscribe(
       response => {
         this.offices = response;
+        if(this.offices.length != 0)
+          this.selectOffice(this.offices[0])
       }
     );
   }

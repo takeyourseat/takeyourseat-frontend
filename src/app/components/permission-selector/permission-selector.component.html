@@ -1,0 +1,8 @@
+<select [(ngModel)]="grant.permission" class="custom-select font-weight-bold" 
+        [ngClass]="{'grey':grant.permission==0, 'green':grant.permission==1, 'blue':grant.permission==2}" >
+    
+    <option class="grey" value="0">None</option>
+    <option class="green" value="1">Read</option>
+    <option class="blue" value="2">Write</option>
+
+</select>

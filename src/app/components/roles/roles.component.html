@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Roles</h1>
+  
+  <div class="form-group">
+    <input [(ngModel)]="newRoleName" type="text" placeholder="Create role" class="form-control w-50 d-inline mr-2">
+    <div (click)="createRole()" class="btn btn-primary d-inline"> Create </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Role</th>
+      <th *ngFor="let dataType of dataTypes" scope="col">{{dataType.name | titlecase}}</th>
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let role of roles;">
+
+      <td>{{ role.role | titlecase }}</td>
+
+      <td *ngFor="let datatype of dataTypes">
+        <app-permission-selector (change)="updateGrants(role, datatype.name)" [(grant)]="role.grants[datatype.name.toLowerCase()]" ></app-permission-selector>
+      </td>
+
+      <td> <div class="btn btn-secondary" (click)="deleteRole(role)" > &times; </div> </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

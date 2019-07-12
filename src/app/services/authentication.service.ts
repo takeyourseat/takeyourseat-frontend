@@ -2,15 +2,20 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AppConstants} from '../AppConstants';
+import { UserService } from './user.service';
+import { OneUser } from '../components/users/model/users';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  loggedInUser: OneUser;
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService,
   ) {
   }
 
@@ -29,6 +34,7 @@ export class AuthenticationService {
         data => {
           sessionStorage.setItem('access_token', data['access_token']);
           sessionStorage.setItem('username', loginUsername);
+          this.loadLoggedInUser();
           ifSucces(data);
         },
         error => {
@@ -58,7 +64,22 @@ export class AuthenticationService {
   logOut() {
     sessionStorage.removeItem('access_token');
     sessionStorage.removeItem('username');
+    this.clearLoggedInUser();
 
+  }
+
+  getLoggedInUser():Observable<OneUser>{
+    return this.http.get<OneUser>(AppConstants.USER_MANAGEMENT_URL()+'users/'+this.getUserName())
+  }
+
+  loadLoggedInUser(){
+    this.getLoggedInUser().subscribe(
+      (data) => this.loggedInUser = data
+    )
+  }
+
+  clearLoggedInUser(){
+    this.loggedInUser = null;
   }
 
 }

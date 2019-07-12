@@ -23,6 +23,9 @@ import { ShowAllUsersComponent } from './components/users/show-all-users/show-al
 import { UserCreatorComponent } from './components/users/user-creator/user-creator.component';
 import { SearhUsersComponent } from './components/users/searh-users/searh-users.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RolesComponent } from './components/roles/roles.component';
+import { PermissionSelectorComponent } from './components/permission-selector/permission-selector.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +43,19 @@ import { SearhUsersComponent } from './components/users/searh-users/searh-users.
     UserplacerequestComponent,
     FooterComponent,
     LogoutComponent,
+<<<<<<< HEAD
     ShowAllUsersComponent,
     UserCreatorComponent,
     SearhUsersComponent,
+=======
+    UsersComponent,
+    RolesComponent,
+    PermissionSelectorComponent,
+>>>>>>> b19c5866ee8bdcce6d2b152bb1968349024f5df7
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
