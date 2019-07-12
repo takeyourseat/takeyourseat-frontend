@@ -3,16 +3,15 @@
   <ngb-tabset>
     <ngb-tab>
       <ng-template ngbTabTitle>Places
-        <span class="notificationsNumber" style="color: #f44242;">5</span>
+        <span class="notificationsNumber" style="color: #f44242;">{{notificationService.notifications.length}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <ul class="list-group list-group-flush">
-          <li class="notification" *ngFor="let notification of notifications">
+          <li class="notification" *ngFor="let notification of notificationService.notifications">
             <div class="close notification-close" aria-hidden="true" (click)="closeNotification(notification)"> &times; </div>
             <img  src="{{notification.notification.image}}">
             <span class="lead">{{notification.notification.title}} </span>
             <p>{{notification.notification.body}}</p>
-
           </li>
         </ul>
 
