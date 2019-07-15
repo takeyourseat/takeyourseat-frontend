@@ -15,12 +15,12 @@ export class NotificationsService {
       new Notification('Notification with images', {
         body: 'Big image is marked as "image" while the small one as "icon"' ,
         image: 'https://www.intheblack.com/-/media/intheblack/allimages/sponsored-content/2018/dexus-office-space.jpg',
-        renotify: false,
         icon: 'https://png.pngtree.com/svg/20160308/3cb5ad269d.png',
+        silent: true,
       }),
       new Notification('Simple notification', {
         body: 'This notification has text only',
-        renotify: false,
+        silent: true,
       })
     );
 
@@ -31,8 +31,11 @@ export class NotificationsService {
       }
     );
 
-    push.messages.subscribe(msg => {
-      this.notifications.unshift(msg as Notification);
+    push.messages.subscribe((msg: any) => {
+      if (msg.notification) {
+        this.notifications.unshift(msg.notification as Notification);
+      }
+
     });
 
     const key = 'BIo4B1bsWsS3fDQZJjFo3k_M9C5sMm929H5EJMbqcYicjCiseaYeCDsE6dIB5NNw4u6rlW8YUWhs-evYAwa2mOM';
