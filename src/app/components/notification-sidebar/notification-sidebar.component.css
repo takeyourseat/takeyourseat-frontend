@@ -1,24 +1,21 @@
-li{
+.notification{
   width: 90%;
   background-color: #eee;
   margin-top: 1rem;
+  padding: 0.5rem;
 }
 
 .notificationsNumber {
-  width: 1.75rem;
-  height: 1.75rem;
-  border-color: #f44242;
-  border-width: 1px;
-  border-style: solid;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
   vertical-align: center;
+  color: white;
+  background: #f44242;
 }
 
-.notification{
-  max-height: 5rem;
-}
 
 .notification img{
   max-height: 3rem;
