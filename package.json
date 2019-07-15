@@ -8,10 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "takeyourseatbuilddev": "ng build --configuration=develop",
-    "takeyourseatbuildprod": "ng build --configuration=production",
-    "takeyourseatprod": "npm run takeyourseatbuild && cd dist/takeyourseat && http-server -c-1",
-    "takeyourseatdev": "npm run takeyourseatbuilddev && cd dist/takeyourseat && http-server -c-1"
+    "tysbuilddev": "ng build --configuration=develop",
+    "tysbuildprod": "ng build --configuration=production",
+    "tysprod": "npm run tysbuildprod && cd dist/takeyourseat && angular-http-server",
+    "tysdev": "npm run tysbuilddev && cd dist/takeyourseat && angular-http-server"
   },
   "private": true,
   "dependencies": {
@@ -27,11 +27,12 @@
     "@angular/service-worker": "~7.2.0",
     "@ng-bootstrap/ng-bootstrap": "~4.2.1",
     "angular-custom-dropdown": "^1.1.1",
+    "angular-http-server": "^1.9.0",
     "angular-tabs-component": "^1.0.6",
     "bootstrap": "^4.2",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "http-server": "^0.9.0",
+    "http-server": "^0.11.1",
     "jquery": "^3.4.1",
     "ng-sidebar": "^8.0.0",
     "rxjs": "~6.3.3",
