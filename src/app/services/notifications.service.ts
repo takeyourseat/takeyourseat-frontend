@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {PushNotification} from '../model/PushNotification';
 import {SwPush} from '@angular/service-worker';
 
 @Injectable({
@@ -7,18 +6,33 @@ import {SwPush} from '@angular/service-worker';
 })
 export class NotificationsService {
 
-  notifications: PushNotification[] = [];
+  notifications: Notification[] = [];
 
   constructor(push: SwPush) {
 
+    /* For development purpose only */
+    this.notifications.push(
+      new Notification('Notification with images', {
+        body: 'Big image is marked as "image" while the small one as "icon"' ,
+        image: 'https://www.intheblack.com/-/media/intheblack/allimages/sponsored-content/2018/dexus-office-space.jpg',
+        renotify: false,
+        icon: 'https://png.pngtree.com/svg/20160308/3cb5ad269d.png',
+      }),
+      new Notification('Simple notification', {
+        body: 'This notification has text only',
+        renotify: false,
+      })
+    );
+
     push.notificationClicks.subscribe(
       (arg) => {
-        console.log('notification clicked ' + arg.notification.data.url);
+        console.log('notification clicked');
+        console.log(arg);
       }
     );
 
     push.messages.subscribe(msg => {
-      this.notifications.unshift(msg as PushNotification);
+      this.notifications.unshift(msg as Notification);
     });
 
     const key = 'BIo4B1bsWsS3fDQZJjFo3k_M9C5sMm929H5EJMbqcYicjCiseaYeCDsE6dIB5NNw4u6rlW8YUWhs-evYAwa2mOM';
@@ -28,7 +42,7 @@ export class NotificationsService {
       .then(() => console.log('Push permission received'));
   }
 
-  closeNotification(notification: PushNotification) {
+  closeNotification(notification: Notification) {
     this.notifications.splice(this.notifications.indexOf(notification), 1);
   }
 

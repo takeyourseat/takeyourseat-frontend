@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {PushNotification} from '../../model/PushNotification';
 import {NotificationsService} from '../../services/notifications.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class NotificationSidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  closeNotification(notification: PushNotification) {
+  closeNotification(notification: Notification) {
     this.notificationService.closeNotification(notification);
   }
 }
