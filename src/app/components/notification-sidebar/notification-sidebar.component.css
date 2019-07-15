@@ -17,8 +17,12 @@
 }
 
 
-.notification img{
+.notification-icon{
   max-height: 3rem;
+}
+
+.notification img{
+  max-width: 100%;
 }
 
 .notification-close{
