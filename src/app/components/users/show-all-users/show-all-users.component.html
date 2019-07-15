@@ -95,16 +95,16 @@
                        [(ngModel)]="model.email">
               </div>
 
-              <div class="form-group">
+              <div class="form-group" *ngIf="selectedUser">
                 <label for="editUsername">
-                  <th>Username</th>
+                  <th>Username (should be filled obligatory)</th>
                 </label>
                 <input type="text"
                        id="editUsername"
                        class="form-control"
                        name="editUsername"
-                       [placeholder]="selectedUser?.username"
-                       value='angel'
+                       [placeholder]="selectedUser.username"
+                       [(ngModel)]="model.username"
                 >
               </div>
 
@@ -139,6 +139,7 @@
                         id="editRole"
                         name="editRole"
                         [(ngModel)]="model.role">
+                  <option value="">Choose the role</option>
                   <option *ngFor="let role of allRoles"
                           [ngValue]="role.name">
                     {{role.name}}
@@ -152,6 +153,7 @@
                         id="editManager"
                         name="editManager"
                         [(ngModel)]="model.manager">
+                  <option value="">Choose the manager</option>
                   <option *ngFor="let users of allUsers"
                           [ngValue]="users.username">
                     {{users.fName + " " + users.lName}}
