@@ -7,16 +7,22 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="list-group list-group-flush">
+
           <p class="lead" *ngIf="!notificationService.notifications.length">There are no notifications here</p>
+
           <div class="notification" *ngFor="let notification of notificationService.notifications" (click)="notificationService.executeAction('default', notification)" >
             <div class="close notification-close" aria-hidden="true" (click)="closeNotification(notification)"> &times; </div>
             <img class="notification-icon" src="{{notification.icon}}">
             <span class="lead">{{notification.title}} </span>
             <p>{{notification.body}}</p>
             <img src="{{notification.image}}">
+
+            <div class="w-100 p-2 d-flex flex-row" >
+              <button *ngFor="let action of notification.actions" (click)="notificationService.executeAction(action.action, notification);$event.stopPropagation()"  class="btn mx-1 btn-secondary flex-fill" > {{action.title}} </button>
+            </div>
+
           </div>
         </div>
-
       </ng-template>
     </ngb-tab>
     <ngb-tab>

@@ -40,7 +40,8 @@ export class NotificationsService {
 
 
 
-  executeAction(action: string, notification: NotificationOptions & {title: string}) {
+  executeAction(action: string, notification: Notification) {
+    console.log(notification)
     if (!action) {
       action = 'default';
     }
