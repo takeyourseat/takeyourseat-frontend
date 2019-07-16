@@ -8,7 +8,7 @@
       <ng-template ngbTabContent>
         <div class="list-group list-group-flush">
           <p class="lead" *ngIf="!notificationService.notifications.length">There are no notifications here</p>
-          <div class="notification" *ngFor="let notification of notificationService.notifications">
+          <div class="notification" *ngFor="let notification of notificationService.notifications" (click)="notificationService.executeAction('default', notification)" >
             <div class="close notification-close" aria-hidden="true" (click)="closeNotification(notification)"> &times; </div>
             <img class="notification-icon" src="{{notification.icon}}">
             <span class="lead">{{notification.title}} </span>

@@ -60,7 +60,7 @@ import { NotificationSidebarComponent } from './components/notification-sidebar/
     AppRoutingModule,
     TabModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.notifications || environment.production}),
+    ServiceWorkerModule.register('custom-service-worker.js', {enabled: environment.notifications || environment.production}),
     SidebarModule.forRoot(),
   ],
   providers: [

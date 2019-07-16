@@ -24,13 +24,6 @@ export class NotificationsService {
       })
     );
 
-    push.notificationClicks.subscribe(
-      (arg) => {
-        console.log('notification clicked');
-        console.log(arg);
-      }
-    );
-
     push.messages.subscribe((msg: any) => {
       if (msg.notification) {
         this.notifications.unshift(msg.notification as Notification);
@@ -45,7 +38,17 @@ export class NotificationsService {
       .then(() => console.log('Push permission received'));
   }
 
-  closeNotification(notification: Notification) {
+
+
+  executeAction(action: string, notification: NotificationOptions & {title: string}) {
+    if (!action) {
+      action = 'default';
+    }
+    open(notification.data.actionLinks[action] );
+  }
+
+
+closeNotification(notification: Notification) {
     this.notifications.splice(this.notifications.indexOf(notification), 1);
   }
 
