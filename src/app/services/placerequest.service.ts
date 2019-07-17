@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {PLACE_MANAGEMENT_API} from '../constants';
 import {PlaceRequests} from '../model/PlaceRequests';
 
@@ -23,8 +23,8 @@ export class PlacerequestService {
     return this.http.patch<PlaceRequests>(PLACE_MANAGEMENT_API + `requests/${id}`, {});
   }
 
-  createPlaceRequest(placeId: number) {
-    return this.http.post<PlaceRequests>(PLACE_MANAGEMENT_API + `requests/${placeId}`, {});
+  createPlaceRequest(placeId: number, description: string) {
+    return this.http.post<PlaceRequests>(PLACE_MANAGEMENT_API + `requests/${placeId}`, {description});
   }
 
   getPlaceRequestsByUsername(username: string) {
