@@ -1,19 +1,11 @@
-<form>
+<div>
   <div>
-    <label for="placeId" class="col-sm-4 col-form-label">Place ID</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="placeId" value={{_selectedPlace.id}}>
+    <label for="description" class="col-sm-4 col-form-label">Description</label>
+    <div class="co1-sm-10">
+      <textarea [(ngModel)]="description" class="form-control" id="description" rows="5"></textarea>
     </div>
-
-    <label for="coordinateX" class="col-sm-4 col-form-label">Coordinate X</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="coordinateX" value={{_selectedPlace.coordinateX}}>
-    </div>
-
-    <label for="coordinateY" class="col-sm-4 col-form-label">Coordinate Y</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control" id="coordinateY" value={{_selectedPlace.coordinateY}}>
-    </div>
-
   </div>
-</form>
+  <br>
+  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createPlaceRequest()">Request Place
+  </button>
+</div>
