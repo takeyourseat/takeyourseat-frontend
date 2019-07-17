@@ -10,7 +10,6 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  loggedInUser: OneUser;
 
   constructor(
     private router: Router,
@@ -18,22 +17,28 @@ export class AuthenticationService {
     private userService: UserService,
   ) {
   }
+  loggedInUser: OneUser;
 
-  obtainAccessToken(loginUsername, loginPassword, ifSucces: (data) => void, ifFail: (error) => void) {
-    let headers = new HttpHeaders()
+  private static getHeaders(): HttpHeaders {
+    return new HttpHeaders()
       .append('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
       .append('Authorization', 'Basic ' + btoa(AppConstants.CLIENT_ID() + ':' + AppConstants.CLIENT_SECRET()));
+  }
 
-    var credentials = ''
+  obtainAccessToken(loginUsername, loginPassword, ifSucces: (data) => void, ifFail: (error) => void) {
+    const headers = AuthenticationService.getHeaders();
+
+    const credentials = ''
       + 'username=' + loginUsername
       + '&password=' + loginPassword
       + '&grant_type=password';
 
-    this.http.post(AppConstants.AUTH_GET_TOKEN_URL(), credentials, {headers: headers})
+    this.http.post(AppConstants.AUTH_GET_TOKEN_URL(), credentials, {headers})
       .subscribe(
-        data => {
-          sessionStorage.setItem('access_token', data['access_token']);
-          sessionStorage.setItem('username', loginUsername);
+        (data: any) => {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('refresh_token', data.refresh_token);
+          localStorage.setItem('username', loginUsername);
           this.loadLoggedInUser();
           ifSucces(data);
         },
@@ -42,19 +47,44 @@ export class AuthenticationService {
         });
   }
 
+  refreshAccessToken(): Observable<string> {
+    const headers = AuthenticationService.getHeaders();
+    const credentials = `refresh_token=${this.getRefreshToken()}&grant_type=refresh_token`;
+    return new Observable( observer => {
+      this.http.post(AppConstants.AUTH_GET_TOKEN_URL(), credentials, {headers}).subscribe(
+        (data: any) => {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('refresh_token', data.refresh_token);
+          observer.next(data.refresh_token);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+        }
+      );
+    }
+  );
+
+  }
+
   /** Ask before Using!! */
-  getToken(): string {
-    return sessionStorage.getItem('access_token');
+  getAccessToken(): string {
+    return localStorage.getItem('access_token');
+  }
+
+  getRefreshToken(): string {
+    return localStorage.getItem('refresh_token');
+
   }
 
   getUserName(): string {
-    return sessionStorage.getItem('username');
+    return localStorage.getItem('username');
   }
 
   isUserLoggedIn(): boolean {
-    if (!sessionStorage.getItem('access_token')) {
+    if (!localStorage.getItem('access_token')) {
       return false;
-    } else if (!sessionStorage.getItem('username')) {
+    } else if (!localStorage.getItem('username')) {
       return false;
     } else {
       return true;
@@ -62,23 +92,24 @@ export class AuthenticationService {
   }
 
   logOut() {
-    sessionStorage.removeItem('access_token');
-    sessionStorage.removeItem('username');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('username');
     this.clearLoggedInUser();
 
   }
 
-  getLoggedInUser():Observable<OneUser>{
-    return this.http.get<OneUser>(AppConstants.USER_MANAGEMENT_URL()+'users/'+this.getUserName())
+  getLoggedInUser(): Observable<OneUser> {
+    return this.http.get<OneUser>(AppConstants.USER_MANAGEMENT_URL() + 'users/' + this.getUserName());
   }
 
-  loadLoggedInUser(){
+  loadLoggedInUser() {
     this.getLoggedInUser().subscribe(
       (data) => this.loggedInUser = data
-    )
+    );
   }
 
-  clearLoggedInUser(){
+  clearLoggedInUser() {
     this.loggedInUser = null;
   }
 

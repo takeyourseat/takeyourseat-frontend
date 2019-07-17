@@ -16,7 +16,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {RequestedplaceComponent} from './components/requestedplace/requestedplace.component';
 import {UserplacerequestComponent} from './components/userplacerequest/userplacerequest.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {InterceptorService} from './services/http/HttpTokenInterceptor.service';
+import {HttpTokenInterceptorService} from './services/http/HttpTokenInterceptor.service';
 import {LogoutComponent} from './components/logout/logout.component';
 import {UsersComponent} from './components/users/users.component';
 import {TabModule} from 'angular-tabs-component';
@@ -64,7 +64,7 @@ import { NotificationSidebarComponent } from './components/notification-sidebar/
     SidebarModule.forRoot(),
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptorService, multi: true},
   ],
   bootstrap: [AppComponent],
 
