@@ -21,21 +21,20 @@
 
   <div *ngIf="managerUsers?.includes(user?.username)">
     <div class="form-group col-sm-10">
-      <label for="officeNumber">Office</label>
-      <select class="form-control" id="officeNumber" name="officeNumber" (change)="getPlacesByOfficeNumber($event)">
+      <label for="availableoffice">Office</label>
+      <select class="form-control" id="availableoffice" name="availableoffice"
+              (change)="getAvailablePlacesByOfficeNumber($event)">
         <option></option>
-        <option *ngFor="let office of offices" [ngValue]="office.number">{{office?.number}}</option>
+        <option *ngFor="let availablePlaces of distinctOffices">{{availablePlaces}}</option>
       </select>
     </div>
 
     <div class="form-group col-sm-10">
       <label for="place">Place</label>
       <select [(ngModel)]="selectPlace" class="form-control" id="place" name="place">
-        <option *ngFor="let place of selectedOffice" [ngValue]="place">CoordinateX {{place.coordinateX}} and
-          CoordinateY {{place.coordinateY}}</option>
+        <option *ngFor="let place of availablePlacesOffice" [ngValue]="place">{{place.id}}</option>
       </select>
     </div>
-
     <button type="button" class="btn btn-primary" (click)="moveUser()" data-dismiss="modal">Move User</button>
   </div>
 </div>

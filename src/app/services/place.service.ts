@@ -9,8 +9,6 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PlaceService {
-
-
   constructor(
     private http: HttpClient
   ) {
@@ -26,6 +24,14 @@ export class PlaceService {
       .put(AppConstants.PLACE_MANAGEMENT_API() + `places?office=${officeNumber}&coordinateX=${coordinateX}&coordinateY=${coordinateY}`,
         JSON.stringify(place),
         {headers});
+  }
+
+  getAvailablePlaces() {
+    return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `places/available`);
+  }
+
+  getAvailablePlacesByOfficeNumber(officeNumber: number): Observable<Place[]> {
+    return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `places/available/?office=${officeNumber}`);
   }
 
   handleError(error) {

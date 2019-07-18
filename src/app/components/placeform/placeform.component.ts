@@ -27,6 +27,10 @@ export class PlaceformComponent implements OnInit, OnChanges {
   userLoggedIn: OneUser;
   managerUsers: string[] = [];
 
+  availablePlaces: Place[];
+  availablePlacesOffice: Place[];
+  distinctOffices: any;
+
   @Input()
   set selectedPlace(place: Place) {
     this._selectedPlace = place;
@@ -42,18 +46,18 @@ export class PlaceformComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getUsersByManagerUsername(this.authenticationService.getUserName());
-    this.getOffices();
     this.authenticationService.getLoggedInUser().subscribe(
       (data) => {
         this.userLoggedIn = data;
       }
     );
+    this.getAvailablePlaces();
   }
 
   ngOnChanges() {
     this.loadUserByUsername(this._selectedPlace.username);
-    this.getOffices();
     this.selectedOffice = [];
+    this.getAvailablePlaces();
   }
 
   loadUserByUsername(username: string) {
@@ -77,26 +81,6 @@ export class PlaceformComponent implements OnInit, OnChanges {
     );
   }
 
-  getOffices() {
-    this.officeService.getOffices().subscribe(
-      response => {
-        this.offices = response;
-      }, error => {
-        this.showError(error);
-      }
-    );
-  }
-
-  getPlacesByOfficeNumber(event: any) {
-    this.placeService.getPlacesByOfficeNumber(event.target.value).subscribe(
-      response => {
-        this.selectedOffice = response;
-      }, error => {
-        this.showError(error);
-      }
-    );
-  }
-
   moveUser() {
     this.placeService.moveUserPlace(
       this.selectPlace.office.number,
@@ -106,6 +90,28 @@ export class PlaceformComponent implements OnInit, OnChanges {
       response => {
         AlertsComponent.display('success', `User ${this.user.username} moved successfully`, 5000);
         location.reload();
+      }, error => {
+        this.showError(error);
+      }
+    );
+  }
+
+  getAvailablePlaces() {
+    this.placeService.getAvailablePlaces().subscribe(
+      response => {
+        this.availablePlaces = response;
+        this.distinctOffices = Array.from(new Set(this.availablePlaces.map(place => place.office.number)));
+        this.distinctOffices.sort();
+      }, error => {
+        this.showError(error);
+      }
+    );
+  }
+
+  getAvailablePlacesByOfficeNumber(event: any) {
+    this.placeService.getAvailablePlacesByOfficeNumber(event.target.value).subscribe(
+      response => {
+        this.availablePlacesOffice = response;
       }, error => {
         this.showError(error);
       }
