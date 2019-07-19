@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class HttpTokenInterceptorService implements HttpInterceptor {
@@ -33,7 +34,7 @@ export class HttpTokenInterceptorService implements HttpInterceptor {
 
         /* if this is a "get access token with refresh token" and there has been an error it's better to log out */
           if (request.body.includes('grant_type=refresh_token')) {
-            this.auth.logOut();
+            open('/login', '_self');
           }
           return Observable.throw(error);
         }
