@@ -3,6 +3,7 @@ import {UserService} from 'src/app/services/user.service';
 import {PlacerequestService} from 'src/app/services/placerequest.service';
 import {PlaceRequests} from 'src/app/model/PlaceRequests';
 import {AuthenticationService} from '../../services/authentication.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-requestedplace',
@@ -14,16 +15,21 @@ export class RequestedplaceComponent implements OnInit {
   public placeRequests: PlaceRequests[];
   public placeRequest: PlaceRequests;
   public isDataLoading: boolean = true;
+  public highlightedRowId: string;
 
   constructor(
     private userService: UserService,
     private placeRequestService: PlacerequestService,
     private authenticationService: AuthenticationService,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
     this.loadPlaceRequestByManager();
+    this.activatedRoute.fragment.subscribe(value => {
+      this.highlightedRowId = value;
+    });
   }
 
   loadPlaceRequestByManager() {
