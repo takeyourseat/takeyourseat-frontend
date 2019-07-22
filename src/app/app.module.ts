@@ -28,6 +28,7 @@ import {ServiceWorkerModule, SwPush} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {SidebarModule} from 'ng-sidebar';
 import { NotificationSidebarComponent } from './components/notification-sidebar/notification-sidebar.component';
+import { PlacerequestNotificationHandlerComponent } from './components/placerequest-notification-handler/placerequest-notification-handler.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { NotificationSidebarComponent } from './components/notification-sidebar/
     RolesComponent,
     PermissionSelectorComponent,
     NotificationSidebarComponent,
+    PlacerequestNotificationHandlerComponent,
   ],
   imports: [
     BrowserModule,

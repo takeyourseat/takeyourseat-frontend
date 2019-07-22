@@ -9,10 +9,12 @@ import {UserIsAnnoymousService} from './services/guards/user-is-annoymous.servic
 import {LogoutComponent} from './components/logout/logout.component';
 import {UsersComponent} from './components/users/users.component';
 import {RolesComponent} from './components/roles/roles.component';
+import {PlacerequestNotificationHandlerComponent} from './components/placerequest-notification-handler/placerequest-notification-handler.component';
 
 const routes: Routes = [
   {path: 'places', component: AllplacesComponent, canActivate: [UserLoggedInGuardService]},
   {path: 'requestedplace', component: RequestedplaceComponent, canActivate: [UserLoggedInGuardService]},
+  {path: 'requestedplace/:id/:action', component: PlacerequestNotificationHandlerComponent, canActivate: [UserLoggedInGuardService]},
   {path: 'userplacerequest', component: UserplacerequestComponent, canActivate: [UserLoggedInGuardService]},
 
   {path: 'users', component: UsersComponent, canActivate: [UserLoggedInGuardService]},
@@ -22,7 +24,6 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent, canActivate: [UserIsAnnoymousService]},
   {path: 'logout', component: LogoutComponent},
-
   {path: '**', component: AllplacesComponent, canActivate: [UserLoggedInGuardService]}
 ];
 
