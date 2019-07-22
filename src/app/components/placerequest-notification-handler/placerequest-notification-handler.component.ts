@@ -37,7 +37,8 @@ export class PlacerequestNotificationHandlerComponent implements OnInit {
           },
           e => {
             this.router.navigate(['/']).then(
-              value => AlertsComponent.display('danger', `Could not approve place request: ${e.error.message ? e.error.message : 'Unknown error'}`)
+              value => AlertsComponent.display(
+                'danger', `Could not approve place request: ${e.error.message ? e.error.message : 'Unknown error'}`)
             );
           }
         );
@@ -53,7 +54,8 @@ export class PlacerequestNotificationHandlerComponent implements OnInit {
           },
           e => {
             this.router.navigate(['/']).then(
-              value => AlertsComponent.display('danger', `Could not decline place request: ${e.error.message ? e.error.message : 'Unknown error'}`)
+              value => AlertsComponent.display(
+                'danger', `Could not decline place request: ${e.error.message ? e.error.message : 'Unknown error'}`)
             );
             console.log(e);
           }
