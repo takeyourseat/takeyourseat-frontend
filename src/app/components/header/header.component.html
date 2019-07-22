@@ -30,8 +30,7 @@
 
 
   <div ngbDropdown placement="bottom-right">
-    <a ngbDropdownToggle class="nav-link"
-       routerLink="">{{authentificationService.loggedInUser?.fName}} {{authentificationService.loggedInUser?.lName}}</a>
+    <a ngbDropdownToggle class="nav-link text-white">{{authentificationService.loggedInUser?.fName}} {{authentificationService.loggedInUser?.lName}}</a>
     <div ngbDropdownMenu style="margin-left: -4rem">
       <a ngbDropdownItem routerLink="logout">Log out</a>
     </div>
