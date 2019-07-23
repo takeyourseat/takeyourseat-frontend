@@ -11,7 +11,6 @@ export class AppComponent {
  isNotificationSidebarOpen = false;
 
   toggleNotificationSidebar($event: boolean) {
-    console.log($event)
     this.isNotificationSidebarOpen = $event;
   }
 }

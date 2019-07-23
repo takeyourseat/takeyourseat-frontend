@@ -4,4 +4,5 @@ export class AppConstants {
     public static AUTH_GET_TOKEN_URL = (): string => 'http://localhost:8083/oauth/token'
     public static USER_MANAGEMENT_URL = (): string => 'http://localhost:8085/'
     public static AUTHORIZATION_SERVICE_URL =():string => 'http://localhost:8086/api/v01/'
+    public static NOTIFICATION_SERVICE_URL = (): string  => 'http://localhost:8087/api/v01/'
 }

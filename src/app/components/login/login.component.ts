@@ -4,6 +4,7 @@ import {AlertsComponent} from '../alerts/alerts.component';
 import {Router} from '@angular/router';
 import {SwPush} from '@angular/service-worker';
 import {PlacerequestService} from '../../services/placerequest.service';
+import {NotificationsService} from '../../services/notifications.service';
 
 @Component({
   selector: 'app-login',
@@ -18,19 +19,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private auth: AuthenticationService,
               private router: Router,
-              private swPush: SwPush,
-              private placerequestService: PlacerequestService) {
-  }
-
-  subscribeToNotifications() {
-
-    this.swPush.requestSubscription({
-      serverPublicKey: this.key
-    })
-      .then(sub => {
-        console.log(sub.toJSON());
-      })
-      .catch(err => console.error('Could not subscribe to notifications', err));
+              private placerequestService: PlacerequestService,
+              private notificationService: NotificationsService,
+              ) {
   }
 
   ngOnInit() {
@@ -41,8 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   ifSucces = (data) => {
-    this.router.navigate(['/places']);
-    this.subscribeToNotifications();
+    this.router.navigate(['/places']).then(
+      () => this.notificationService.requestNotificationSubscription());
   };
 
   ifFail(error) {
