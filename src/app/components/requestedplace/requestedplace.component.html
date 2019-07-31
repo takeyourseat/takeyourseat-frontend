@@ -1,32 +1,32 @@
 <div class="container" *ngIf="isDataLoading; else noPlacesRequest">
   <table class="table table-bordered mx-auto my-5">
     <thead>
-      <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Floor</th>
-        <th>Office Number</th>
-        <th>Coordinate X</th>
-        <th>Coordinate Y</th>
-        <th>Date Of</th>
-        <th>Status</th>
-      </tr>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Floor</th>
+      <th>Office Number</th>
+      <th>Date Of</th>
+      <th>Place Number</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let placerequest of placeRequests">
-        <td>{{placerequest.user?.fName}}</td>
-        <td>{{placerequest.user?.lName}}</td>
-        <td>{{placerequest.place?.office.floor}}</td>
-        <td>{{placerequest.place?.office.number}}</td>
-        <td>{{placerequest.place?.coordinateX}}</td>
-        <td>{{placerequest.place?.coordinateY}}</td>
-        <td>{{placerequest.dateOf | date}}</td>
-        <td>
-          <button type="button" class="btn btn-success" (click)="acceptPlaceRequest(placerequest.id)">Approve</button>
-          <button type="button" class="btn btn-danger m-2" (click)="declinePlaceRequest(placerequest.id)">Reject
-          </button>
-        </td>
-      </tr>
+    <tr *ngFor="let placerequest of placeRequests">
+      <td>{{placerequest.user?.fName}}</td>
+      <td>{{placerequest.user?.lName}}</td>
+      <td>{{placerequest.place?.office.floor}}</td>
+      <td>{{placerequest.place?.office.number}}</td>
+      <td>{{placerequest.dateOf | date}}</td>
+      <td>{{placerequest.place?.id}}</td>
+      <td>{{placerequest.description}}</td>
+      <td>
+        <button type="button" class="btn btn-success" (click)="acceptPlaceRequest(placerequest.id)">Approve</button>
+        <button type="button" class="btn btn-danger m-2" (click)="declinePlaceRequest(placerequest.id)">Reject
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>

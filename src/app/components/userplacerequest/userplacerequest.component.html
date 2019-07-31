@@ -4,8 +4,8 @@
       <tr>
         <th>Floor</th>
         <th>Office Number</th>
-        <th>Coordinate X</th>
-        <th>Coordinate Y</th>
+        <th>Place Number</th>
+        <th>Description</th>
         <th>Date Of</th>
         <th>Status</th>
       </tr>
@@ -14,8 +14,8 @@
       <tr *ngFor="let placerequest of placeRequests">
         <td>{{placerequest.place?.office.floor}}</td>
         <td>{{placerequest.place?.office.number}}</td>
-        <td>{{placerequest.place?.coordinateX}}</td>
-        <td>{{placerequest.place?.coordinateY}}</td>
+        <td>{{placerequest.place?.id}}</td>
+        <td>{{placerequest.description}}</td>
         <td>{{placerequest.dateOf | date}}</td>
         <ng-template [ngIf]="placerequest.approved == null">
           <td style="background: orange">Pending</td>
