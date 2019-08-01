@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Office } from 'src/app/model/Office';
-import { Place } from 'src/app/model/Place';
+import {Component, OnInit, Input} from '@angular/core';
+import {Office} from 'src/app/model/Office';
+import {Place} from 'src/app/model/Place';
 
 @Component({
   selector: 'app-placetable',
@@ -42,7 +42,7 @@ export class PlacetableComponent implements OnInit {
       }
     }
     this._places.forEach(place => {
-      this.schema[place.coordinateX][place.coordinateY] = { ...place, isPlace: true, isAvailable: !place.username };
+      this.schema[place.coordinateX][place.coordinateY] = {...place, isPlace: true, isAvailable: !place.username};
     });
   }
 
