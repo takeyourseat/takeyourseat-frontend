@@ -17,27 +17,6 @@ export class NotificationsService {
     private http: HttpClient,
     private authenticationService: AuthenticationService
     ) {
-
-    /* For development purpose only */
-    this.notifications.push(
-      new Notification('Notification with images', {
-        body: 'Big image is marked as "image" while the small one as "icon"' ,
-        image: 'https://www.intheblack.com/-/media/intheblack/allimages/sponsored-content/2018/dexus-office-space.jpg',
-        icon: 'https://png.pngtree.com/svg/20160308/3cb5ad269d.png',
-        silent: true,
-      }),
-      new Notification('Simple notification', {
-        body: 'This notification has text only',
-        silent: true,
-      })
-    );
-
-    push.messages.subscribe((msg: any) => {
-      if (msg.notification) {
-        this.notifications.unshift(msg.notification as Notification);
-      }
-
-    });
   }
 
   requestNotificationSubscription() {
