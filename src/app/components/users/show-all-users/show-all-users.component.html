@@ -1,0 +1,161 @@
+<h3>
+  <div layout="row" class="container">
+    Welcome to user management
+  </div>
+</h3>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Employees</h1>
+    <br>
+  </div>
+
+
+  <div class="panel-body">
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Manager</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let users of allUsers">
+
+        <td>{{users.fName}}</td>
+        <td>{{users.lName}}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.username}}</td>
+        <td>{{users.manager != null ? users.manager.fName : ''}}</td>
+        <td>{{users.role != null ? users.role.name : ''}}</td>
+        <td>
+          <button type="submit" class="btn btn-primary" (click)="selectUser(users)" data-target="#editModal" data-toggle="modal">Edit</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModal">Edit the user</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Here will be the edit module for existing user</p>
+          <div style="width: 400px;">
+            <form name="editForm" #e="ngForm" (ngSubmit)="e.form.dirty && editUser()" novalidate class="edit-user-form">
+
+
+              <div class="form-group">
+                <label for="editFirstName">
+                  <th>First Name</th>
+                </label>
+                <input type="text"
+                       id="editFirstName"
+                       class="form-control"
+                       name="editFirstName"
+                       [placeholder]="selectedUser?.fName"
+                       [(ngModel)]="model.fName">
+              </div>
+
+              <div class="form-group">
+                <label for="editLasName">
+                  <th>Last Name</th>
+                </label>
+                <input type="text"
+                       id="editLasName"
+                       class="form-control"
+                       name="editLastName"
+                       [placeholder]="selectedUser?.lName"
+                       [(ngModel)]="model.lName">
+              </div>
+
+              <div class="form-group">
+                <label for="editEmail">
+                  <th>Email</th>
+                </label>
+                <input type="text"
+                       id="editEmail"
+                       class="form-control"
+                       name="editEmail"
+                       [placeholder]="selectedUser?.email"
+                       [(ngModel)]="model.email">
+              </div>
+
+              <div class="form-group" *ngIf="selectedUser">
+                <label for="editUsername">
+                  <th>Username (should be filled obligatory)</th>
+                </label>
+                <input type="text"
+                       id="editUsername"
+                       class="form-control"
+                       name="editUsername"
+                       [placeholder]="selectedUser.username"
+                       [(ngModel)]="model.username"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="editPassword">
+                  <th>Password</th>
+                </label>
+                <input type="text"
+                       id="editPassword"
+                       class="form-control"
+                       name="editPassword"
+                       [placeholder]="selectedUser?.password"
+                       [(ngModel)]="model.password">
+              </div>
+
+              <div class="form-group">
+                <th>Role</th>
+                <select class="form-control"
+                        id="editRole"
+                        name="editRole"
+                        [(ngModel)]="model.role">
+                  <option value="">Choose the role</option>
+                  <option *ngFor="let role of allRoles"
+                          [ngValue]="role.name">
+                    {{role.name}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <th>Manager</th>
+                <select class="form-control"
+                        id="editManager"
+                        name="editManager"
+                        [(ngModel)]="model.manager">
+                  <option value="">Choose the manager</option>
+                  <option *ngFor="let users of allUsers"
+                          [ngValue]="users.username">
+                    {{users.fName + " " + users.lName}}
+                  </option>
+                </select>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -7,7 +7,7 @@ import {OfficeService} from '../../services/office.service';
 import {PlaceService} from '../../services/place.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Office} from '../../model/Office';
-import {OneUser} from '../users/model/users';
+import {UserModel} from '../users/model/users';
 
 @Component({
   selector: 'app-placeform',
@@ -24,7 +24,7 @@ export class PlaceformComponent implements OnInit, OnChanges {
   selectedOffice: Place[];
   username: string;
   selectPlace: Place;
-  userLoggedIn: OneUser;
+  userLoggedIn: UserModel;
   managerUsers: string[] = [];
 
   availablePlaces: Place[];

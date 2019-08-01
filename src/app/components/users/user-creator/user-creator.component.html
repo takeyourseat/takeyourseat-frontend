@@ -1,0 +1,152 @@
+<h3>
+  <div layout="row" class="container text-center">
+    Welcome to user management
+  </div>
+</h3>
+
+<div class="container">
+
+
+    <div style="width: 400px;">
+      <form name="createForm" #f="ngForm" (ngSubmit)="f.form.valid && createUser()" novalidate
+            class="create-user-form">
+
+        <div class="form-group">
+          <label for="firstName">
+            <th>First Name</th>
+          </label>
+          <input type="text"
+                 id="firstName"
+                 class="form-control"
+                 name="firstName"
+                 placeholder="Enter here your first name"
+                 [(ngModel)]="model.fName"
+                 #firstname="ngModel"
+                 [ngClass]="{'is invalid': f.submitted && firstname.invalid}"
+                 required/>
+
+          <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+          <div *ngIf="f.submitted && firstname.invalid" class="invalid-input">
+
+            <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+            <div *ngIf="firstname.errors?.required">Please, enter the first name of the employee</div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">
+            <th>Last Name</th>
+          </label>
+          <input type="text"
+                 id="lastName"
+                 class="form-control"
+                 name="lastName"
+                 placeholder="Enter here your last name"
+                 [(ngModel)]="model.lName"
+                 #lastname="ngModel"
+                 [ngClass]="{'is invalid': f.submitted && lastname.invalid}" required/>
+
+          <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+          <div *ngIf="f.submitted && lastname.invalid" class="invalid-input">
+
+            <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+            <div *ngIf="lastname.errors?.required">Please, enter the last name of the employee</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <th>Email</th>
+          </label>
+          <input type="text"
+                 id="email"
+                 class="form-control"
+                 name="email"
+                 placeholder="Enter here your email"
+                 [(ngModel)]="model.email"
+                 #email="ngModel" [ngClass]="{'is invalid': f.submitted && email.invalid}"
+                 required/>
+
+          <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+          <div *ngIf="f.submitted && email.invalid" class="invalid-input">
+
+            <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+            <div *ngIf="email.errors?.required">Please, enter the email address</div>
+            <div *ngIf="email.errors?.email">Field is not valid</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">
+            <th>Username</th>
+          </label>
+          <input type="text"
+                 id="username"
+                 class="form-control"
+                 name="username"
+                 placeholder="Enter here your username"
+                 [(ngModel)]="model.username"
+                 #username="ngModel"
+                 [ngClass]="{'is invalid': f.submitted && username.invalid}" required/>
+
+          <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+          <div *ngIf="f.submitted && username.invalid" class="invalid-input">
+
+            <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+            <div *ngIf="username.errors?.required">Please, enter the username of the employee</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            <th>Password</th>
+          </label>
+          <input type="text"
+                 id="password"
+                 class="form-control"
+                 name="password"
+                 placeholder="Enter here the password"
+                 [(ngModel)]="model.password"
+                 #password="ngModel"
+                 [ngClass]="{'is invalid': f.submitted && password.invalid}"
+                 required/>
+
+          <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
+          <div *ngIf="f.submitted && password.invalid" class="invalid-input">
+
+            <!-- next line will check NAME field and if information has wrong type, then will be notification -->
+            <div *ngIf="password.errors?.required">Please, enter the password for new employee</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <th>Role</th>
+          <select class="form-control"
+                  id="role"
+                  name="role"
+                  [(ngModel)]="model.role">
+            <option *ngFor="let role of allRoles"
+                    [ngValue]="role">
+              {{role.name}}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <th>Manager</th>
+          <select class="form-control"
+                  id="manager"
+                  name="manager"
+                  [(ngModel)]="model.manager">
+            <option *ngFor="let users of allUsers"
+                    [ngValue]="users">
+              {{users.fName + " " + users.lName}}
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import {AppConstants} from '../AppConstants'
   providedIn: 'root'
 })
 export class RolesService {
- 
+
   constructor(
     private http: HttpClient,
     ) { }
@@ -29,4 +29,7 @@ export class RolesService {
     return this.http.delete(AppConstants.AUTHORIZATION_SERVICE_URL()+'roles/'+role)
   }
 
+  getRoleByUsername(username: string){
+    return this.http.get<any>(AppConstants.AUTHORIZATION_SERVICE_URL()+'users/'+username)
+  }
 }

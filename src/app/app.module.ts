@@ -18,8 +18,10 @@ import {UserplacerequestComponent} from './components/userplacerequest/userplace
 import {FooterComponent} from './components/footer/footer.component';
 import {HttpTokenInterceptorService} from './services/http/HttpTokenInterceptor.service';
 import {LogoutComponent} from './components/logout/logout.component';
-import {UsersComponent} from './components/users/users.component';
 import {TabModule} from 'angular-tabs-component';
+import { ShowAllUsersComponent } from './components/users/show-all-users/show-all-users.component';
+import { UserCreatorComponent } from './components/users/user-creator/user-creator.component';
+import { SearhUsersComponent } from './components/users/searh-users/searh-users.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RolesComponent} from './components/roles/roles.component';
@@ -46,9 +48,12 @@ import { PlacerequestNotificationHandlerComponent } from './components/placerequ
     UserplacerequestComponent,
     FooterComponent,
     LogoutComponent,
-    UsersComponent,
+    ShowAllUsersComponent,
+    UserCreatorComponent,
+    SearhUsersComponent,
     RolesComponent,
     PermissionSelectorComponent,
+
     NotificationSidebarComponent,
     PlacerequestNotificationHandlerComponent,
   ],
@@ -58,6 +63,7 @@ import { PlacerequestNotificationHandlerComponent } from './components/placerequ
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+
     AppRoutingModule,
     TabModule,
     ReactiveFormsModule,
