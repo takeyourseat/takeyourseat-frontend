@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Role, UserModel, UserViewModel} from '../model/users';
 import {HttpClient} from '@angular/common/http';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-show-all-users',
@@ -18,7 +19,6 @@ export class ShowAllUsersComponent implements OnInit {
     lName: '',
     email: '',
     username: '',
-    jobTitle: '',
     manager: '',
     role: '',
     password: ''
@@ -29,11 +29,14 @@ export class ShowAllUsersComponent implements OnInit {
     this.selectedUser = user;
   }
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+              ) {
   }
 
-  public getRoles() {
-    const url = 'http://localhost:8085/roles';
+  public getAllRoles() {
+    const url = 'http://localhost:8086/api/v01/roles';
     this.http.get<Role[]>(url).subscribe(
       res => {
         this.allRoles = res;
@@ -45,11 +48,12 @@ export class ShowAllUsersComponent implements OnInit {
   }
 
 
-  public getUsers() {
+  public getAllUsers() {
     const url = 'http://localhost:8085/users';
     this.http.get<UserModel[]>(url).subscribe(
       res => {
         this.allUsers = res;
+        this.userService.mapRoles(res);
       },
       err => {
         alert('Something goes wrong');
@@ -73,9 +77,8 @@ export class ShowAllUsersComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getUsers();
-    this.getRoles();
+    this.getAllUsers();
+    this.getAllRoles();
   }
-
 
 }

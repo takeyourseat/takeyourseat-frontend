@@ -121,27 +121,6 @@
         </div>
 
         <div class="form-group">
-          <label for="jobTitle">
-            <th>Job Title</th>
-          </label>
-          <input type="text"
-                 id="jobTitle"
-                 class="form-control"
-                 name="jobTitle"
-                 placeholder="Enter here your Job Title"
-                 [(ngModel)]="model.jobTitle"
-                 #jobTitle="ngModel"
-                 [ngClass]="{'is invalid': f.submitted && jobTitle.invalid}" required/>
-
-          <!-- next line will check if the create button was pressed and if there is any information in NAME field -->
-          <div *ngIf="f.submitted && jobTitle.invalid" class="invalid-input">
-
-            <!-- next line will check NAME field and if information has wrong type, then will be notification -->
-            <div *ngIf="jobTitle.errors?.required">Please, enter the Job Title of the employee</div>
-          </div>
-        </div>
-
-        <div class="form-group">
           <th>Role</th>
           <select class="form-control"
                   id="role"

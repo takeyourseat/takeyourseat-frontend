@@ -4,20 +4,17 @@ export interface UserModel {
   lName: string;
   email: string;
   username: string;
-  jobTitle: string;
   password: string;
   manager: {
     fName: string;
   };
-  role: {
-    name: string;
-  };
-
-}
+  role: Role;
+  }
 
 export interface Role {
   id: string;
   name: string;
+  enabled: boolean;
 }
 
 export interface UserViewModel {
@@ -25,7 +22,6 @@ export interface UserViewModel {
   lName: string;
   email: string;
   username: string;
-  jobTitle: string;
   manager: string;
   role: string;
   password: string;

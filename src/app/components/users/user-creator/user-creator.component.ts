@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Role, UserModel, UserViewModel} from '../model/users';
+import {AlertsComponent} from '../../alerts/alerts.component';
 
 @Component({
   selector: 'app-user-creator',
@@ -16,7 +17,6 @@ export class UserCreatorComponent implements OnInit {
     lName: '',
     email: '',
     username: '',
-    jobTitle: '',
     manager: '',
     role: '',
     password: ''
@@ -32,14 +32,14 @@ export class UserCreatorComponent implements OnInit {
         location.reload();
       },
       error => {
-        alert('An error has been occured during the creating the new employee');
+        AlertsComponent.display('danger', 'Could not create a user');
       }
     );
   }
 
 
-  public getRoles() {
-    const url = 'http://localhost:8085/roles';
+  public getAllRoles() {
+    const url = 'http://localhost:8086/api/v01/roles';
     this.http.get<Role[]>(url).subscribe(
       res => {
         this.allRoles = res;
@@ -68,7 +68,7 @@ export class UserCreatorComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
-    this.getRoles();
+    this.getAllRoles();
   }
 
 }

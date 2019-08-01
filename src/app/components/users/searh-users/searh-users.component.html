@@ -26,7 +26,6 @@
               <th>Lastname</th>
               <th>Email</th>
               <th>Username</th>
-              <th>JobTitile</th>
               <th>Manager</th>
               <th>Role</th>
             </tr>
@@ -37,9 +36,8 @@
               <td>{{users.lName}}</td>
               <td>{{users.email}}</td>
               <td>{{users.username}}</td>
-              <td>{{users.jobTitle}}</td>
               <td>{{users.manager != null ? users.manager.fName : ''}}</td>
-              <td>{{users.role.name}}</td>
+              <td>{{users.role != null ? users.role.name : ''}}</td>
             </tr>
             </tbody>
           </table>

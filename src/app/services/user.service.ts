@@ -4,6 +4,8 @@ import {apiURL} from '../constants';
 import {User} from '../model/User';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {UserModel} from '../components/users/model/users';
+import {RolesService} from './roles.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ import {catchError} from 'rxjs/operators';
 export class UserService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private roleService: RolesService,
   ) {
   }
 
@@ -25,6 +28,16 @@ export class UserService {
 
   getUsersByManagerId(id: number): Observable<User[]> {
     return this.http.get<User[]>(apiURL + `users/?managerId=${id}`).pipe(catchError(this.handleError));
+  }
+
+  public mapRoles(users: UserModel[]) {
+    for (const user of users) {
+      this.roleService.getRoleByUsername(user.username).subscribe(
+        userInfo => {
+          user.role = userInfo.role;
+        }
+      );
+    }
   }
 
   handleError(error) {

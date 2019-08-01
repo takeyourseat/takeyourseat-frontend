@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserModel, UserViewModel} from '../model/users';
 import {HttpClient} from '@angular/common/http';
+import {UserService} from '../../../services/user.service';
+import {AlertsComponent} from '../../alerts/alerts.component';
 
 @Component({
   selector: 'app-searh-users',
@@ -9,8 +11,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class SearhUsersComponent implements OnInit {
   oneUser: UserModel[] = [];
-  allUsers: UserModel[] = [];
-
 
   searchArgument: string;
 
@@ -20,7 +20,6 @@ export class SearhUsersComponent implements OnInit {
     lName: '',
     email: '',
     username: '',
-    jobTitle: '',
     manager: '',
     role: '',
     password: ''
@@ -32,16 +31,21 @@ export class SearhUsersComponent implements OnInit {
     const url = `http://localhost:8085/users?searchArgument=${searchArgument}`;
     this.http.get<UserModel[]>(url).subscribe(
       res => {
-
+        this.userSearch.mapRoles(res);
         this.oneUser = res;
+        AlertsComponent.clearMessages();
+        AlertsComponent.display('success', 'Users with matching criteria are found');
       },
       err => {
-        alert('Could not perform searching. Something is going wrong in app!');
+        AlertsComponent.display('not found', 'Could not perform searching. Something is going wrong in app!');
       }
     );
   }
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private userSearch: UserService,
+    ) {
   }
 
   ngOnInit() {

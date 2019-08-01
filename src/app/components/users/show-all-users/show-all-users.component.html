@@ -20,7 +20,6 @@
         <th>Lastname</th>
         <th>Email</th>
         <th>Username</th>
-        <th>JobTitile</th>
         <th>Manager</th>
         <th>Role</th>
         <th>Actions</th>
@@ -33,9 +32,8 @@
         <td>{{users.lName}}</td>
         <td>{{users.email}}</td>
         <td>{{users.username}}</td>
-        <td>{{users.jobTitle}}</td>
         <td>{{users.manager != null ? users.manager.fName : ''}}</td>
-        <td>{{users.role.name}}</td>
+        <td>{{users.role != null ? users.role.name : ''}}</td>
         <td>
           <button type="submit" class="btn btn-primary" (click)="selectUser(users)" data-target="#editModal" data-toggle="modal">Edit</button>
         </td>
@@ -108,7 +106,6 @@
                 >
               </div>
 
-
               <div class="form-group">
                 <label for="editPassword">
                   <th>Password</th>
@@ -119,18 +116,6 @@
                        name="editPassword"
                        [placeholder]="selectedUser?.password"
                        [(ngModel)]="model.password">
-              </div>
-
-              <div class="form-group">
-                <label for="editJobTitle">
-                  <th>Job Title</th>
-                </label>
-                <input type="text"
-                       id="editJobTitle"
-                       class="form-control"
-                       name="editJobTitle"
-                       [placeholder]="selectedUser?.jobTitle"
-                       [(ngModel)]="model.jobTitle">
               </div>
 
               <div class="form-group">
