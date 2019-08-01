@@ -16,12 +16,8 @@ const routes: Routes = [
   {path: 'requestedplace', component: RequestedplaceComponent, canActivate: [UserLoggedInGuardService]},
   {path: 'requestedplace/:id/:action', component: PlacerequestNotificationHandlerComponent, canActivate: [UserLoggedInGuardService]},
   {path: 'userplacerequest', component: UserplacerequestComponent, canActivate: [UserLoggedInGuardService]},
-
   {path: 'users', component: UsersComponent, canActivate: [UserLoggedInGuardService]},
-
   {path: 'roles', component: RolesComponent, canActivate: [UserLoggedInGuardService]},
-
-
   {path: 'login', component: LoginComponent, canActivate: [UserIsAnnoymousService]},
   {path: 'logout', component: LogoutComponent},
   {path: '**', component: AllplacesComponent, canActivate: [UserLoggedInGuardService]}

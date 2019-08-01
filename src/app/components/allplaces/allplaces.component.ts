@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { OfficeService } from 'src/app/services/office.service';
-import { PlaceService } from 'src/app/services/place.service';
-import { Office } from 'src/app/model/Office';
-import { Place } from 'src/app/model/Place';
-import { PlacetableComponent } from '../placetable/placetable.component';
+import {Component, OnInit} from '@angular/core';
+import {OfficeService} from 'src/app/services/office.service';
+import {PlaceService} from 'src/app/services/place.service';
+import {Office} from 'src/app/model/Office';
+import {Place} from 'src/app/model/Place';
+import {PlacetableComponent} from '../placetable/placetable.component';
 
 @Component({
   selector: 'app-allplaces',
@@ -17,7 +17,6 @@ export class AllplacesComponent implements OnInit {
   places: Place[];
   floors: number[];
   selectedOffice: Office;
-  selectedPlace: Place;
 
   constructor(
     private officeService: OfficeService,
@@ -33,8 +32,9 @@ export class AllplacesComponent implements OnInit {
     this.officeService.getFloors().subscribe(
       response => {
         this.floors = response;
-        if(this.floors.length != 0)
-          this.loadOffices(this.floors[0])
+        if (this.floors.length != 0) {
+          this.loadOffices(this.floors[0]);
+        }
       }
     );
   }
@@ -43,15 +43,16 @@ export class AllplacesComponent implements OnInit {
     this.officeService.getOfficesByFloor(id).subscribe(
       response => {
         this.offices = response;
-        if(this.offices.length != 0)
-          this.selectOffice(this.offices[0])
+        if (this.offices.length != 0) {
+          this.selectOffice(this.offices[0]);
+        }
       }
     );
   }
 
   selectOffice(office: Office) {
     this.selectedOffice = office;
-    this.placeService.getPlacesByOfficeId(office.id).subscribe(
+    this.placeService.getPlacesByOfficeNumber(office.number).subscribe(
       response => {
         this.places = response;
       }

@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {apiURL} from '../constants';
+import {AppConstants} from '../AppConstants';
 import {User} from '../model/User';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,19 @@ export class UserService {
   }
 
   getUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8085/' + `users/${username}`).pipe(catchError(this.handleError));
+    return this.http.get<User>(AppConstants.USER_MANAGEMENT_URL() + `users/${username}`).pipe(catchError(this.handleError));
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(apiURL + `users`).pipe(catchError(this.handleError));
+    return this.http.get<User[]>(AppConstants.PLACE_MANAGEMENT_API() + `users`).pipe(catchError(this.handleError));
   }
 
   getUsersByManagerId(id: number): Observable<User[]> {
-    return this.http.get<User[]>(apiURL + `users/?managerId=${id}`).pipe(catchError(this.handleError));
+    return this.http.get<User[]>(AppConstants.PLACE_MANAGEMENT_API() + `users/?managerId=${id}`).pipe(catchError(this.handleError));
+  }
+
+  getUsersByManagerUsername(username: string): Observable<User[]> {
+    return this.http.get<User[]>(AppConstants.USER_MANAGEMENT_URL() + `users?manager=${username}`);
   }
 
   handleError(error) {

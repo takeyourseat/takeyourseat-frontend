@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Place} from 'src/app/model/Place';
-import {HttpClient} from '@angular/common/http';
-import {apiURL} from 'src/app/constants';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AppConstants} from '../AppConstants';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
@@ -9,22 +9,29 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PlaceService {
-
   constructor(
     private http: HttpClient
   ) {
   }
 
   getPlacesByOfficeNumber(officenum: number): Observable<Place[]> {
-    return this.http.get<Place[]>(apiURL + `offices/${officenum}/places`).pipe(catchError(this.handleError));
+    return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `offices/${officenum}/places`).pipe(catchError(this.handleError));
   }
 
-  getPlacesByOfficeId(officeId: number): Observable<Place[]> {
-    return this.http.get<Place[]>(apiURL + `offices/${officeId}/places`).pipe(catchError(this.handleError));
+  moveUserPlace(officeNumber: number, coordinateX: number, coordinateY: number, place): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http
+      .put(AppConstants.PLACE_MANAGEMENT_API() + `places?office=${officeNumber}&coordinateX=${coordinateX}&coordinateY=${coordinateY}`,
+        JSON.stringify(place),
+        {headers});
   }
 
-  getPlaceById(id: number) {
-    return this.http.get<Place>(apiURL + `places/${id}`);
+  getAvailablePlaces() {
+    return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `places/available`);
+  }
+
+  getAvailablePlacesByOfficeNumber(officeNumber: number): Observable<Place[]> {
+    return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `places/available/?office=${officeNumber}`);
   }
 
   handleError(error) {
