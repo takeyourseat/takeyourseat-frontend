@@ -17,6 +17,11 @@ export class NotificationsService {
     private http: HttpClient,
     private authenticationService: AuthenticationService
     ) {
+    push.messages.subscribe((msg: any) => {
+      if (msg.notification) {
+        this.notifications.unshift(msg.notification as Notification);
+      }
+    });
   }
 
   requestNotificationSubscription() {
