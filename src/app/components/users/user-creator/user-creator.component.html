@@ -126,6 +126,7 @@
                   id="role"
                   name="role"
                   [(ngModel)]="model.role">
+            <option value="">Choose the role</option>
             <option *ngFor="let role of allRoles"
                     [ngValue]="role">
               {{role.name}}
@@ -139,6 +140,7 @@
                   id="manager"
                   name="manager"
                   [(ngModel)]="model.manager">
+            <option value="">Choose the manager</option>
             <option *ngFor="let users of allUsers"
                     [ngValue]="users">
               {{users.fName + " " + users.lName}}
