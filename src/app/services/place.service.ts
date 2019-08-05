@@ -34,6 +34,10 @@ export class PlaceService {
     return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `places/available/?office=${officeNumber}`);
   }
 
+  getAllPlaces(): Observable<Place[]> {
+    return this.http.get<Place[]>(AppConstants.PLACE_MANAGEMENT_API() + `places`);
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

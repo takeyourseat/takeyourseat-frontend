@@ -16,7 +16,12 @@
 
   <label for="jobtitle" class="col-sm-4 col-form-label">Job Title</label>
   <div class="col-sm-10">
-    <input type="text" readonly class="form-control" id="jobtitle" value={{user?.role.name}}>
+    <input type="text" readonly class="form-control" id="jobtitle" value={{role}}>
+  </div>
+
+  <label for="place" class="col-sm-4 col-form-label">Place Number</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" id="placeNumber" value={{placeByUsername?.id}}>
   </div>
 
   <div *ngIf="managerUsers?.includes(user?.username)">

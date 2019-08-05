@@ -8,6 +8,7 @@ import {PlaceService} from '../../services/place.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Office} from '../../model/Office';
 import {UserModel} from '../users/model/users';
+import {RolesService} from '../../services/roles.service';
 
 @Component({
   selector: 'app-placeform',
@@ -31,6 +32,10 @@ export class PlaceformComponent implements OnInit, OnChanges {
   availablePlacesOffice: Place[];
   distinctOffices: any;
 
+  placeByUsername: Place;
+  allPlaces: Place[] = [];
+  role: string;
+
   @Input()
   set selectedPlace(place: Place) {
     this._selectedPlace = place;
@@ -40,7 +45,8 @@ export class PlaceformComponent implements OnInit, OnChanges {
     private userService: UserService,
     private officeService: OfficeService,
     private placeService: PlaceService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private roleService: RolesService
   ) {
   }
 
@@ -52,18 +58,24 @@ export class PlaceformComponent implements OnInit, OnChanges {
       }
     );
     this.getAvailablePlaces();
+    this.getAllPlaces();
+    this.getRolesByUsername(this._selectedPlace.username);
   }
 
   ngOnChanges() {
     this.loadUserByUsername(this._selectedPlace.username);
     this.selectedOffice = [];
+    this.getPlaceByUsername(this._selectedPlace.username);
     this.getAvailablePlaces();
+    this.getRolesByUsername(this._selectedPlace.username);
   }
 
   loadUserByUsername(username: string) {
     this.userService.getUserByUsername(username).subscribe(
       response => {
         this.user = response;
+      }, error => {
+        this.showError(error);
       }
     );
   }
@@ -114,6 +126,33 @@ export class PlaceformComponent implements OnInit, OnChanges {
         this.availablePlacesOffice = response;
       }, error => {
         this.showError(error);
+      }
+    );
+  }
+
+  getPlaceByUsername(username: string) {
+    for (const place of this.allPlaces) {
+      if (place.username === username) {
+        this.placeByUsername = place;
+        console.log(this.placeByUsername.id);
+      }
+    }
+  }
+
+  getRolesByUsername(username) {
+    this.roleService.getRoleByUsername(username).subscribe(
+      response => {
+        this.role = response.role.name;
+      }, error => {
+        this.showError(error);
+      }
+    );
+  }
+
+  getAllPlaces() {
+    this.placeService.getAllPlaces().subscribe(
+      response => {
+        this.allPlaces = response;
       }
     );
   }
