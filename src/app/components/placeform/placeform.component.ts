@@ -134,7 +134,6 @@ export class PlaceformComponent implements OnInit, OnChanges {
     for (const place of this.allPlaces) {
       if (place.username === username) {
         this.placeByUsername = place;
-        console.log(this.placeByUsername.id);
       }
     }
   }
