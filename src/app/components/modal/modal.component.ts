@@ -8,7 +8,7 @@ import 'bootstrap/js/dist/modal';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  private _selectedPlace: Place;
+  public _selectedPlace: Place;
 
   @Input()
   set selectedPlace(place: Place) {
