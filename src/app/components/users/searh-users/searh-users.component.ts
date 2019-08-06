@@ -28,7 +28,7 @@ export class SearhUsersComponent implements OnInit {
 
 
   public getOneUser(searchArgument: string) {
-    const url = `http://localhost:8085/users?searchArgument=${searchArgument}`;
+    const url = `http://${window.location.hostname}:8085/users?searchArgument=${searchArgument}`;
     this.http.get<UserModel[]>(url).subscribe(
       res => {
         this.userSearch.mapRoles(res);
