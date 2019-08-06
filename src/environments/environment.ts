@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  notifications: true
+  notifications: true,
+  // hostname: 'localhost'
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

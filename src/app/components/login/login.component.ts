@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ifSucces = (data) => {
     this.router.navigate(['/places']).then(
       () => this.notificationService.requestNotificationSubscription());
-  };
+  }
 
   ifFail(error) {
     AlertsComponent.display('danger', 'Unable to Log in, please try again');
